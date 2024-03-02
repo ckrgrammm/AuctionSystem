@@ -43,7 +43,7 @@
 
                         <!--====== Main Logo ======-->
 
-                        <a class="main-logo" href="index.html">
+                        <a class="main-logo" href="index.php">
 
                             <img src="images/logo/logo-1.png" alt=""></a>
                         <!--====== End - Main Logo ======-->
@@ -82,24 +82,24 @@
                                         <ul style="width:120px">
                                             <li>
 
-                                                <a href="dashboard.html"><i class="fas fa-user-circle u-s-m-r-6"></i>
+                                                <a href="dashboard.php"><i class="fas fa-user-circle u-s-m-r-6"></i>
 
                                                     <span>Account</span></a></li>
                                             <li>
 
-                                                <a href="signup.html"><i class="fas fa-user-plus u-s-m-r-6"></i>
+                                                <a href="signup.php"><i class="fas fa-user-plus u-s-m-r-6"></i>
 
-                                                    <span>Signup</span></a></li>
+                                                    <span>Sign Up</span></a></li>
                                             <li>
 
-                                                <a href="signin.html"><i class="fas fa-lock u-s-m-r-6"></i>
+                                                <a href="signin.php"><i class="fas fa-lock u-s-m-r-6"></i>
 
-                                                    <span>Signin</span></a></li>
+                                                    <span>Sign In</span></a></li>
                                             <li>
 
-                                                <a href="signup.html"><i class="fas fa-lock-open u-s-m-r-6"></i>
+                                                <a href="signup.php"><i class="fas fa-lock-open u-s-m-r-6"></i>
 
-                                                    <span>Signout</span></a></li>
+                                                    <span>Sign Out</span></a></li>
                                         </ul>
                                         <!--====== End - Dropdown ======-->
                                     </li>
@@ -111,29 +111,7 @@
 
                                         <span class="js-menu-toggle"></span>
                                         <ul style="width:120px">
-                                            <li class="has-dropdown has-dropdown--ul-right-100">
-
-                                                <a>Language<i class="fas fa-angle-down u-s-m-l-6"></i></a>
-
-                                                <!--====== Dropdown ======-->
-
-                                                <span class="js-menu-toggle"></span>
-                                                <ul style="width:120px">
-                                                    <li>
-
-                                                        <a class="u-c-brand">ENGLISH</a></li>
-                                                    <li>
-
-                                                        <a>ARABIC</a></li>
-                                                    <li>
-
-                                                        <a>FRANCAIS</a></li>
-                                                    <li>
-
-                                                        <a>ESPANOL</a></li>
-                                                </ul>
-                                                <!--====== End - Dropdown ======-->
-                                            </li>
+                                
                                             <li class="has-dropdown has-dropdown--ul-right-100">
 
                                                 <a>Currency<i class="fas fa-angle-down u-s-m-l-6"></i></a>
@@ -224,28 +202,28 @@
                                                             <span class="js-menu-toggle"></span></li>
                                                         <li>
 
-                                                            <a href="index.html"><i class="fas fa-utensils u-s-m-r-6"></i>
+                                                            <a href="index.php"><i class="fas fa-utensils u-s-m-r-6"></i>
 
                                                                 <span>Food & Supplies</span></a>
 
                                                             <span class="js-menu-toggle"></span></li>
                                                         <li>
 
-                                                            <a href="index.html"><i class="fas fa-couch u-s-m-r-6"></i>
+                                                            <a href="index.php"><i class="fas fa-couch u-s-m-r-6"></i>
 
                                                                 <span>Furniture & Decor</span></a>
 
                                                             <span class="js-menu-toggle"></span></li>
                                                         <li>
 
-                                                            <a href="index.html"><i class="fas fa-football-ball u-s-m-r-6"></i>
+                                                            <a href="index.php"><i class="fas fa-football-ball u-s-m-r-6"></i>
 
                                                                 <span>Sports & Game</span></a>
 
                                                             <span class="js-menu-toggle"></span></li>
                                                         <li>
 
-                                                            <a href="index.html"><i class="fas fa-heartbeat u-s-m-r-6"></i>
+                                                            <a href="index.php"><i class="fas fa-heartbeat u-s-m-r-6"></i>
 
                                                                 <span>Beauty & Health</span></a>
 
@@ -945,7 +923,7 @@
                                 <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
                                     <li>
 
-                                        <a href="index.html"><i class="fas fa-home"></i></a></li>
+                                        <a href="index.php"><i class="fas fa-home"></i></a></li>
                                     <li>
 
                                         <a href="wishlist.html"><i class="far fa-heart"></i></a></li>
