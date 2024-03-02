@@ -209,10 +209,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
 
 
-<!-- Your Firebase Authentication logic -->
-<script src="./firebase/firebaseInit.js"></script>
+<script type="module" src="./firebase/firebaseInit.js"></script>
+<script type="module" src="./firebase/firebaseAuth.js"></script>
 
-<script src="./firebase/firebaseAuth.js"></script>
 
 </body>
 

@@ -1,11 +1,11 @@
-// Assuming firebaseInit.js has already initialized Firebase
-
+import { app } from './firebaseInit'; 
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
+
 // Get a reference to the auth service
-const auth = getAuth();
-const db = getFirestore();
+const auth = getAuth(app);
+const db = getFirestore(app);
 
 document.getElementById('signup-form').addEventListener('submit', function(e) {
     e.preventDefault();
