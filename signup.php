@@ -195,20 +195,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 <!--====== End - Main App ======-->
 
-
-<!--====== Google Analytics: change UA-XXXXX-Y to be your site's ID ======-->
-<script>
-    window.ga = function() {
-        ga.q.push(arguments)
-    };
-    ga.q = [];
-    ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto');
-    ga('send', 'pageview')
-</script>
-
-<script src="https://www.google-analytics.com/analytics.js" async defer></script>
-
 <!--====== Vendor Js ======-->
 <script src="js/vendor.js"></script>
 
@@ -223,27 +209,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
 
 
-<!-- Firebase initialization -->
-<script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyDh5BYXJjnTzoovmpx9_kyFCOMxasi3J4g",
-        authDomain: "auctionsystem-c68b7.firebaseapp.com",
-        databaseURL: "https://auctionsystem-c68b7-default-rtdb.firebaseio.com",
-        projectId: "auctionsystem-c68b7",
-        storageBucket: "auctionsystem-c68b7.appspot.com",
-        messagingSenderId: "376813246187",
-        appId: "1:376813246187:web:481ae61618f648feec50ae",
-        measurementId: "G-VMYG978N9N"
-    };
-
-
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-</script>
-
-
 <!-- Your Firebase Authentication logic -->
-<script src="firebaseAuth.js"></script>
+<script src="./firebase/firebaseInit.js"></script>
+
+<script src="./firebase/firebaseAuth.js"></script>
 
 </body>
 
