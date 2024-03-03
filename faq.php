@@ -20,7 +20,7 @@ include("header.php");
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <a href="index.php">Home</a></li>
                                     <li class="is-marked">
 
                                         <a href="faq.html">FAQ</a></li>

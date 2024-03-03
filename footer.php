@@ -47,19 +47,19 @@
                                             <ul>
                                                 <li>
 
-                                                    <a href="cart.html">Cart</a></li>
+                                                    <a href="cart.php">Cart</a></li>
                                                 <li>
 
                                                     <a href="dashboard.html">Account</a></li>
                                                 <li>
 
-                                                    <a href="shop-side-version-2.html">Manufacturer</a></li>
+                                                    <a href="shop-side-version-2.php">Manufacturer</a></li>
                                                 <li>
 
                                                     <a href="dash-payment-option.html">Finance</a></li>
                                                 <li>
 
-                                                    <a href="shop-side-version-2.html">Shop</a></li>
+                                                    <a href="shop-side-version-2.php">Shop</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -78,13 +78,13 @@
                                                     <a href="contact.html">Contact Us</a></li>
                                                 <li>
 
-                                                    <a href="index.html">Sitemap</a></li>
+                                                    <a href="index.php">Sitemap</a></li>
                                                 <li>
 
                                                     <a href="dash-my-order.html">Delivery</a></li>
                                                 <li>
 
-                                                    <a href="shop-side-version-2.html">Store</a></li>
+                                                    <a href="shop-side-version-2.php">Store</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -134,9 +134,9 @@
                             <div class="lower-footer__content">
                                 <div class="lower-footer__copyright">
 
-                                    <span>Copyright © 2018</span>
+                                    <span>Copyright © 2024</span>
 
-                                    <a href="index.html">Reshop</a>
+                                    <a href="index.php">Auction System</a>
 
                                     <span>All Right Reserved</span></div>
                                 <div class="lower-footer__payment">

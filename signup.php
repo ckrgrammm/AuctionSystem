@@ -1,42 +1,6 @@
 <?php
-
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-include('db.php');
 $title = "Sign Up";
 include('header.php');
-
-// Handling form data
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Assuming you have form fields named 'status', 'firstName', and 'lastName'
-    $status = $_POST['status']; // Example: 'Auctioneer' or 'Bidder'
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    // Add other form fields as necessary
-
-    // Decide the collection based on user status
-    $collectionName = ($status == 'Auctioneer') ? 'auctioneers' : 'bidders';
-
-    // Prepare the data to be saved
-    $data = [
-        'firstName' => $firstName,
-        'lastName' => $lastName,
-        // Add other form fields as necessary
-    ];
-
-    // Save data to Firestore
-    try {
-        $documentReference = $database->collection($collectionName)->add($data);
-        // If needed, get the document ID of the newly created document
-        $documentId = $documentReference->id();
-
-        // Redirect or perform other actions as needed
-        header('Location: signin.php');
-        exit;
-    } catch (Exception $e) {
-        echo 'Error: ' . $e->getMessage();
-    }
-}
 ?>
 
 
@@ -56,11 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <ul class="breadcrumb__list">
                             <li class="has-separator">
 
-                                <a href="index.html">Home</a>
+                                <a href="index.php">Home</a>
                             </li>
                             <li class="is-marked">
 
-                                <a href="signup.html">Register</a>
+                                <a href="signup.php">Register</a>
                             </li>
                         </ul>
                     </div>
@@ -170,14 +134,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                                         <label class="gl-label" for="gender">STATUS *</label><select class="select-box select-box--primary-style u-w-100" id="status">
                                             <option selected>Select</option>
-                                            <option value="male">Auctioneer</option>
-                                            <option value="male">Bidder</option>
+                                            <option value="Auctioneer">Auctioneer</option>
+                                            <option value="Bidder">Bidder</option>
                                         </select>
                                     </div>
                                     <div class="u-s-m-b-15">
 
                                         <button class="btn btn--e-transparent-brand-b-2" type="submit">CREATE</button>
                                     </div>
+                                    <a class="gl-link" style="color:#ADD8E6;" href="signin.php">Already Have An Account ?</a>
+                                    <br>
 
                                     <a class="gl-link" href="#">Return to Store</a>
                                 </form>
@@ -205,12 +171,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <script src="js/app.js"></script>
 
 <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js"></script>
 
 
 <script type="module" src="./firebase/firebaseInit.js"></script>
-<script type="module" src="./firebase/firebaseAuth.js"></script>
+<!-- <script type="module" src="./firebase/firebaseAuth.js"></script> -->
 
 
 </body>

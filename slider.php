@@ -17,7 +17,7 @@
 
                                     <span class="u-c-brand">$1050.00</span></span>
 
-                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a>
+                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.php">SHOP NOW</a>
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
 
                                     <span class="u-c-brand">$380.00</span></span>
 
-                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a>
+                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.php">SHOP NOW</a>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
 
                                     <span class="u-c-brand">$550.00</span></span>
 
-                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a>
+                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.php">SHOP NOW</a>
                             </div>
                         </div>
                     </div>

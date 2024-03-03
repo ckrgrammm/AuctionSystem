@@ -17,11 +17,11 @@ include("header.php")
                         <ul class="breadcrumb__list">
                             <li class="has-separator">
 
-                                <a href="index.html">Home</a>
+                                <a href="index.php">Home</a>
                             </li>
                             <li class="is-marked">
 
-                                <a href="signin.html">Login</a>
+                                <a href="signin.php">Login</a>
                             </li>
                         </ul>
                     </div>
@@ -62,21 +62,21 @@ include("header.php")
                                 <span class="gl-text u-s-m-b-30">By creating an account with our store, you will be able to move through the checkout process faster, store shipping addresses, view and track your orders in your account and more.</span>
                                 <div class="u-s-m-b-15">
 
-                                    <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.html">CREATE AN ACCOUNT</a>
+                                    <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.php">CREATE AN ACCOUNT</a>
                                 </div>
                                 <h1 class="gl-h1">SIGNIN</h1>
-                                <form class="l-f-o__form" action="login-handler.php" method="POST">
+                                <form class="l-f-o__form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                                     <div class="u-s-m-b-30">
 
                                         <label class="gl-label" for="login-email">E-MAIL *</label>
 
-                                        <input class="input-text input-text--primary-style" type="text" id="login-email" name="email" placeholder="Enter E-mail">
+                                        <input class="input-text input-text--primary-style" type="text" id="signin-email" name="email" placeholder="Enter E-mail">
                                     </div>
                                     <div class="u-s-m-b-30">
 
                                         <label class="gl-label" for="login-password">PASSWORD *</label>
 
-                                        <input class="input-text input-text--primary-style" type="text" id="login-password" name="password" placeholder="Enter Password">
+                                        <input class="input-text input-text--primary-style" type="text" id="signin-password" name="password" placeholder="Enter Password">
                                     </div>
                                     <div class="gl-inline">
                                         <div class="u-s-m-b-30">
@@ -119,17 +119,7 @@ include("header.php")
 <!--====== End - Main App ======-->
 
 
-<!--====== Google Analytics: change UA-XXXXX-Y to be your site's ID ======-->
-<script>
-    window.ga = function() {
-        ga.q.push(arguments)
-    };
-    ga.q = [];
-    ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto');
-    ga('send', 'pageview')
-</script>
-<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
 
 <!--====== Vendor Js ======-->
 <script src="js/vendor.js"></script>
@@ -140,25 +130,20 @@ include("header.php")
 <!--====== App ======-->
 <script src="js/app.js"></script>
 
-<!--====== Noscript ======-->
-<noscript>
-    <div class="app-setting">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="app-setting__wrap">
-                        <h1 class="app-setting__h1">JavaScript is disabled in your browser.</h1>
 
-                        <span class="app-setting__text">Please enable JavaScript in your browser or upgrade to a JavaScript-capable browser.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</noscript>
+
 </body>
 
 </html>
+
+<script type="module" src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js"></script>
+
+<script type="module" src="./firebase/firebaseInit.js"></script>
+
+
 
 
 <?php

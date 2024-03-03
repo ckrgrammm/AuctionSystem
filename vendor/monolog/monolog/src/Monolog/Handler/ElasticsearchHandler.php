@@ -27,7 +27,7 @@ use Elastic\Elasticsearch\Client as Client8;
 /**
  * Elasticsearch handler
  *
- * @link https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html
+ * @link https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.php
  *
  * Simple usage example:
  *

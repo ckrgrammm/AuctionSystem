@@ -1,32 +1,38 @@
 <?php
 
-require 'vendor/autoload.php';
+require __DIR__.'/vendor/autoload.php';
 
 use Google\Cloud\Firestore\FirestoreClient;
 
-$serviceAccountPath = __DIR__ . '/auctionsystem-c68b7-firebase-adminsdk-i5fpv-0d559df87f.json';
-$projectId = 'auctionsystem-c68b7';
+$serviceAccountPath = __DIR__ . '/firebase/auctionsystem-c68b7-firebase-adminsdk-i5fpv-0d559df87f.json';
+
+
+
+// Create an instance of FirestoreClient
+$firestore = new FirestoreClient([
+    'keyFilePath' => $serviceAccountPath,
+]);
+
+$collectionName = 'auctioneers'; // The name of the collection
+$documentId = 'Lh1dh6XxyaWTd7FgkNtpuF9x7vg1'; // The ID of the document you want to fetch
+
+$firstName = ""; // Initialize the variable
+$lastName = ""; // Initialize the variable
+$status = ""; // Initialize the variable
 
 try {
-    // Create an instance of FirestoreClient
-    $firestore = new FirestoreClient([
-        'keyFilePath' => $serviceAccountPath,
-        'projectId' => $projectId,
-    ]);
+    $documentReference = $firestore->collection($collectionName)->document($documentId);
+    $snapshot = $documentReference->snapshot();
 
-    // Assuming $firestore is being used somewhere below...
-    $database = $firestore;
-
-    // Example: Fetch a document
-    $document = $firestore->collection('YourCollection')->document('YourDocumentId')->snapshot();
-    if ($document->exists()) {
-        print_r($document->data());
+    if ($snapshot->exists()) {
+        $userData = $snapshot->data();
+        $firstName = $userData['firstName']; // Assign the value from the document
+        $lastName = $userData['lastName']; // Assign the value from the document
+        $status = $userData['status']; // Assign the value from the document
     } else {
-        echo "Document does not exist!" . PHP_EOL;
+        echo "Document does not exist!";
     }
 } catch (Exception $e) {
-    // Catch and display errors
-    echo 'Firestore connection failed: ' . $e->getMessage();
+    echo 'Error: ' . $e->getMessage();
 }
-
 ?>

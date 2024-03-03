@@ -514,7 +514,7 @@
      "properties": {
       "mainPageSuffix": {
        "type": "string",
-       "description": "If the requested object path is missing, the service will ensure the path has a trailing '/', append this suffix, and attempt to retrieve the resulting object. This allows the creation of index.html objects to represent directory pages."
+       "description": "If the requested object path is missing, the service will ensure the path has a trailing '/', append this suffix, and attempt to retrieve the resulting object. This allows the creation of index.php objects to represent directory pages."
       },
       "notFoundPage": {
        "type": "string",
