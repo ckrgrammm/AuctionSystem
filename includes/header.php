@@ -80,19 +80,40 @@
                                     <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                                 </li>
 
-                                <li <?php echo (CURRENT_PAGE == "customers.php" || CURRENT_PAGE == "add_customer.php") ? 'class="active"' : ''; ?>>
+                                <li <?php echo (basename($_SERVER['SCRIPT_NAME']) == "customers.php" || basename($_SERVER['SCRIPT_NAME']) == "add_customer.php") ? 'class="active"' : ''; ?>>
                                     <a href="#"><i class="fa fa-user-circle fa-fw"></i> Customers<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
                                             <a href="customers.php"><i class="fa fa-list fa-fw"></i>List all</a>
                                         </li>
-                                    <li>
-                                        <a href="add_customer.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
-                                    </li>
+                                        <li>
+                                            <a href="add_customer.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
+                                        </li>
                                     </ul>
                                 </li>
+
+                                <li <?php echo (basename($_SERVER['SCRIPT_NAME']) == "products.php" || basename($_SERVER['SCRIPT_NAME']) == "add_product.php") ? 'class="active"' : ''; ?>>
+                                    <a href="#"><i class="fa fa-cubes fa-fw"></i> Products<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="products.php"><i class="fa fa-list fa-fw"></i>List all</a>
+                                        </li>
+                                        <li>
+                                            <a href="add_product.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
                                 <li>
-                                    <a href="admin_users.php"><i class="fa fa-users fa-fw"></i> Users</a>
+                                    <a href=".php"><i class="fa fa-gavel fa-fw"></i> Bids</a>
+                                </li>
+
+                                <li>
+                                    <a href=".php"><i class="fa fa-commenting fa-fw"></i> Reviews and Ratings</a>
+                                </li>
+
+                                <li>
+                                    <a href=".php"><i class="fa fa-credit-card fa-fw"></i> Payments</a>
                                 </li>
                             </ul>
                         </div>

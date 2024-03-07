@@ -1,59 +1,17 @@
 <?php
 session_start();
-require_once 'config/config.php';
-require_once BASE_PATH . '/includes/auth_validate.php';
+require_once '../../includes/auth_validate.php';
+include_once('../../includes/header.php');
 
-// Costumers class
-require_once BASE_PATH . '/lib/Costumers/Costumers.php';
-$costumers = new Costumers();
-
-// Get Input data from query string
-$search_string = filter_input(INPUT_GET, 'search_string');
-$filter_col = filter_input(INPUT_GET, 'filter_col');
-$order_by = filter_input(INPUT_GET, 'order_by');
-
-// Per page limit for pagination.
-$pagelimit = 15;
-
-// Get current page.
-$page = filter_input(INPUT_GET, 'page');
-if (!$page) {
-	$page = 1;
-}
-
-// If filter types are not selected we show latest added data first
-if (!$filter_col) {
-	$filter_col = 'id';
-}
-if (!$order_by) {
-	$order_by = 'Desc';
-}
-
-//Get DB instance. i.e instance of MYSQLiDB Library
-$db = getDbInstance();
-$select = array('id', 'f_name', 'l_name', 'gender', 'phone', 'created_at', 'updated_at');
-
-//Start building query according to input parameters.
-// If search string
-if ($search_string) {
-	$db->where('f_name', '%' . $search_string . '%', 'like');
-	$db->orwhere('l_name', '%' . $search_string . '%', 'like');
-}
-
-//If order by option selected
-if ($order_by) {
-	$db->orderBy($filter_col, $order_by);
-}
-
-// Set pagination limit
-$db->pageLimit = $pagelimit;
-
-// Get result of the query.
-$rows = $db->arraybuilder()->paginate('customers', $page, $select);
-$total_pages = $db->totalPages;
-
-include BASE_PATH . '/includes/header.php';
 ?>
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.bootstrap.css">
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.1/js/dataTables.bootstrap.js"></script>
+
 <!-- Main container -->
 <div id="page-wrapper">
     <div class="row">
@@ -62,105 +20,105 @@ include BASE_PATH . '/includes/header.php';
         </div>
         <div class="col-lg-6">
             <div class="page-action-links text-right">
-                <a href="add_customer.php?operation=create" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Add new</a>
+                <a href="add_customer.php" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Add new</a>
             </div>
         </div>
     </div>
-    <?php include BASE_PATH . '/includes/flash_messages.php';?>
+    <?php include '../../includes/flash_messages.php' ;?>
 
-    <!-- Filters -->
-    <div class="well text-center filter-form">
-        <form class="form form-inline" action="">
-            <label for="input_search">Search</label>
-            <input type="text" class="form-control" id="input_search" name="search_string" value="<?php echo xss_clean($search_string); ?>">
-            <label for="input_order">Order By</label>
-            <select name="filter_col" class="form-control">
-                <?php
-foreach ($costumers->setOrderingValues() as $opt_value => $opt_name):
-	($order_by === $opt_value) ? $selected = 'selected' : $selected = '';
-	echo ' <option value="' . $opt_value . '" ' . $selected . '>' . $opt_name . '</option>';
-endforeach;
-?>
-            </select>
-            <select name="order_by" class="form-control" id="input_order">
-                <option value="Asc" <?php
-if ($order_by == 'Asc') {
-	echo 'selected';
-}
-?> >Asc</option>
-                <option value="Desc" <?php
-if ($order_by == 'Desc') {
-	echo 'selected';
-}
-?>>Desc</option>
-            </select>
-            <input type="submit" value="Go" class="btn btn-primary">
-        </form>
-    </div>
-    <hr>
-    <!-- //Filters -->
-
-
-    <div id="export-section">
-        <a href="export_customers.php"><button class="btn btn-sm btn-primary">Export to CSV <i class="glyphicon glyphicon-export"></i></button></a>
-    </div>
-
-    <!-- Table -->
-    <table class="table table-striped table-bordered table-condensed">
-        <thead>
-            <tr>
-                <th width="5%">ID</th>
-                <th width="45%">Name</th>
-                <th width="20%">Gender</th>
-                <th width="20%">Phone</th>
-                <th width="10%">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($rows as $row): ?>
-            <tr>
-                <td><?php echo $row['id']; ?></td>
-                <td><?php echo xss_clean($row['f_name'] . ' ' . $row['l_name']); ?></td>
-                <td><?php echo xss_clean($row['gender']); ?></td>
-                <td><?php echo xss_clean($row['phone']); ?></td>
-                <td>
-                    <a href="edit_customer.php?customer_id=<?php echo $row['id']; ?>&operation=edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
-                    <a href="#" class="btn btn-danger delete_btn" data-toggle="modal" data-target="#confirm-delete-<?php echo $row['id']; ?>"><i class="glyphicon glyphicon-trash"></i></a>
-                </td>
-            </tr>
-            <!-- Delete Confirmation Modal -->
-            <div class="modal fade" id="confirm-delete-<?php echo $row['id']; ?>" role="dialog">
-                <div class="modal-dialog">
-                    <form action="delete_customer.php" method="POST">
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Confirm</h4>
-                            </div>
-                            <div class="modal-body">
-                                <input type="hidden" name="del_id" id="del_id" value="<?php echo $row['id']; ?>">
-                                <p>Are you sure you want to delete this row?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-default pull-left">Yes</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- //Delete Confirmation Modal -->
-            <?php endforeach;?>
-        </tbody>
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+        
     </table>
-    <!-- //Table -->
-
-    <!-- Pagination -->
-    <div class="text-center">
-    <?php echo paginationLinks($page, $total_pages, 'customers.php'); ?>
-    </div>
-    <!-- //Pagination -->
+    
 </div>
 <!-- //Main container -->
-<?php include BASE_PATH . '/includes/footer.php';?>
+<?php include_once('../../includes/footer.php'); ?>
+
+<script type="module">
+  import { getFirestore, collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+  import { db } from '../../firebase/firebaseInit.js'; // Make sure you export db in firebaseInit.js
+
+  async function loadUsersData() {
+    const auctioneersSnapshot = await getDocs(collection(db, "auctioneers"));
+    const biddersSnapshot = await getDocs(collection(db, "bidders"));
+
+    const usersData = [];
+
+    auctioneersSnapshot.forEach(doc => {
+      let userData = doc.data();
+      userData['id'] = doc.id; // Store the document ID
+      userData['role'] = 'auctioneer'; // Add role for the DataTable
+      usersData.push([
+        userData.firstName + ' ' + userData.lastName, // Name column
+        userData.role, // Role column
+        userData.email, // Email column
+        "", // Action column
+        userData.id  
+        ]);
+    });
+
+    biddersSnapshot.forEach(doc => {
+      let userData = doc.data();
+      userData['id'] = doc.id; // Store the document ID
+      userData['role'] = 'bidder'; // Add role for the DataTable
+      usersData.push([
+        userData.firstName + ' ' + userData.lastName, // Name column
+        userData.role, // Role column
+        userData.email, // Email column
+        "", // Action column
+        userData.id
+    ]);
+    });
+
+    // Initialize the DataTable with the usersData array
+    $(document).ready(function() {
+        var table = $('#example').DataTable({
+            data: usersData,
+            columns: [
+            { title: "Name" },
+            { title: "Role" },
+            { title: "Email" },
+            { title: "Action", orderable: false },
+            { title: "userId", visible: false },
+            ],
+            columnDefs: [
+            {
+                // Targets the 'Action' column
+                targets: 3, 
+                render: function (data, type, row, meta) {
+                // Append the Firestore document ID to the buttons as a data attribute
+                return "<button class='btn btn-primary edit-btn' data-id='" + row[4] + "'><i class='glyphicon glyphicon-pencil'></i></button> " +
+                        "<button class='btn btn-danger delete-btn' data-id='" + row[4] + "' data-collection='" + row[1] + "'><i class='glyphicon glyphicon-trash'></i></button>";
+                }
+            }
+            ]
+        });
+
+        // Event listener for edit button
+        $('#example tbody').on('click', '.edit-btn', function () {
+            var id = $(this).attr('data-id');
+            window.location.href = 'edit_customer.php?id=' + id;
+        });
+
+        // Event listener for delete button
+        $('#example tbody').on('click', '.delete-btn', async function () {
+            var id = $(this).attr('data-id');
+            const collection = $(this).data('collection');
+            if(confirm('Are you sure you want to delete this user?')) {
+            try {
+                // Delete the document from Firestore
+                await deleteDoc(doc(db, collection+'s', id));
+                table.row($(this).parents('tr')).remove().draw();
+            } catch (error) {
+                console.error("Error removing document: ", error);
+            }
+            }
+        });
+      // Event listener code for edit and delete buttons goes here (as you already have in your script)
+    });
+  }
+
+  loadUsersData();
+</script>
+
+

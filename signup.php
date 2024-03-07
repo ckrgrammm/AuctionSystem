@@ -75,17 +75,14 @@ include('header.php');
 
                                         <input class="input-text input-text--primary-style" type="text" id="reg-lname" placeholder="Last Name">
                                     </div>
-                                    <div class="u-s-m-b-30">
+                                    <!-- <div class="u-s-m-b-30">
 
                                         <label class="gl-label" for="reg-lname">CONTACT *</label>
 
                                         <input class="input-text input-text--primary-style" type="number" id="reg-lname" placeholder="Contact Number">
-                                    </div>
-                                    <div class="gl-inline">
+                                    </div> -->
+                                    <!-- <div class="gl-inline">
                                         <div class="u-s-m-b-30">
-
-                                            <!--====== Date of Birth Select-Box ======-->
-
                                             <span class="gl-label">BIRTHDAY</span>
                                             <div class="gl-dob"><select class="select-box select-box--primary-style">
                                                     <option selected>Month</option>
@@ -106,7 +103,6 @@ include('header.php');
                                                     <option value="1993">1993</option>
                                                     <option value="1994">1994</option>
                                                 </select></div>
-                                            <!--====== End - Date of Birth Select-Box ======-->
                                         </div>
                                         <div class="u-s-m-b-30">
 
@@ -116,7 +112,7 @@ include('header.php');
                                                 <option value="male">Female</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="u-s-m-b-30">
 
                                         <label class="gl-label" for="reg-email">E-MAIL *</label>
@@ -178,8 +174,53 @@ include('header.php');
 
 
 <script type="module" src="./firebase/firebaseInit.js"></script>
-<!-- <script type="module" src="./firebase/firebaseAuth.js"></script> -->
+<script type="module">
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+    import { auth, db } from './firebase/firebaseInit.js'; // Make sure db is properly exported
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
+    document.getElementById('signup-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Get user info from form
+        const email = document.getElementById('reg-email').value;
+        const password = document.getElementById('reg-password').value;
+        const firstName = document.getElementById('reg-fname').value;
+        const lastName = document.getElementById('reg-lname').value;
+        const status = document.getElementById('status').value; // Assuming you have a 'status' field
+
+
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            const collectionName = status === 'Auctioneer' ? 'auctioneers' : 'bidders';
+
+            await setDoc(doc(db, collectionName, user.uid), {
+                firstName,
+                lastName,
+                email, 
+                status,
+            });
+
+            // console.log("User information saved to Firestore");
+            alert("Account Created Successfully !");
+
+            setTimeout(() => {
+                window.location.href = 'signin.php';
+            }, 2000);
+        } catch (error) {
+            if (error.code === 'auth/email-already-in-use') {
+                alert("The Email Has Been Used");
+            } else if (error.code === 'firestore/permission-denied') {
+                window.location.href = '404.php';
+            } else {
+                window.location.href = 'signin.php';
+            }
+            console.error("Error creating user", error.code, error.message);
+        }
+    });
+</script>
 
 </body>
 

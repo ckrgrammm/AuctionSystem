@@ -1,15 +1,9 @@
 <?php
 session_start();
-require_once './config/config.php';
-require_once 'includes/auth_validate.php';
 
-//Get DB instance. function is defined in config.php
-$db = getDbInstance();
+require_once '../../includes/auth_validate.php';
 
-//Get Dashboard information
-$numCustomers = $db->getValue ("customers", "count(*)");
-
-include_once('includes/header.php');
+include_once('../../includes/header.php');
 ?>
 <div id="page-wrapper">
     <div class="row">
@@ -28,7 +22,7 @@ include_once('includes/header.php');
                             <i class="fa fa-user fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?php echo $numCustomers; ?></div>
+                            <div class="huge">2</div>
                             <div>Customers</div>
                         </div>
                     </div>
@@ -89,4 +83,4 @@ include_once('includes/header.php');
 </div>
 <!-- /#page-wrapper -->
 
-<?php include_once('includes/footer.php'); ?>
+<?php include_once('../../includes/footer.php'); ?>
