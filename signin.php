@@ -1,7 +1,47 @@
 <?php
 $title = "Sign In";
-include("header.php")
+session_start();
+require_once 'auth_validate.php';
+include("header.php");
 ?>
+<style>
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    .alert-danger {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
+
+    .alert-dismissable .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0.75rem 1.25rem;
+        color: inherit;
+    }
+
+    .alert-dismissable .close:hover {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .fade {
+        opacity: 0;
+        transition: opacity 0.15s linear;
+    }
+
+    .in {
+        opacity: 1;
+    }
+</style>
 
 <!--====== App Content ======-->
 <div class="app-content">
@@ -65,7 +105,7 @@ include("header.php")
                                     <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.php">CREATE AN ACCOUNT</a>
                                 </div>
                                 <h1 class="gl-h1">SIGNIN</h1>
-                                <form class="l-f-o__form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                                <form class="l-f-o__form" action="" method="POST" id="user_login_form">
                                     <div class="u-s-m-b-30">
 
                                         <label class="gl-label" for="login-email">E-MAIL *</label>
@@ -78,6 +118,10 @@ include("header.php")
 
                                         <input class="input-text input-text--primary-style" type="text" id="signin-password" name="password" placeholder="Enter Password">
                                     </div>
+                                    <div id="loginError" class="alert alert-danger alert-dismissable in" style="display: none;">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <!-- Error message will be inserted here by JavaScript -->
+                                    </div>
                                     <div class="gl-inline">
                                         <div class="u-s-m-b-30">
 
@@ -85,20 +129,20 @@ include("header.php")
                                         </div>
                                         <div class="u-s-m-b-30">
 
-                                            <a class="gl-link" href="lost-password.html">Lost Your Password?</a>
+                                            <a class="gl-link" href="lost-password.php">Lost Your Password?</a>
                                         </div>
                                     </div>
                                     <div class="u-s-m-b-30">
 
                                         <!--====== Check Box ======-->
-                                        <div class="check-box">
+                                        <!-- <div class="check-box">
 
                                             <input type="checkbox" id="remember-me">
                                             <div class="check-box__state check-box__state--primary">
 
                                                 <label class="check-box__label" for="remember-me">Remember Me</label>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!--====== End - Check Box ======-->
                                     </div>
                                 </form>
@@ -142,9 +186,56 @@ include("header.php")
 <script type="module" src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js"></script>
 
 <script type="module" src="./firebase/firebaseInit.js"></script>
+<script type="module">
+  import { auth, db } from './firebase/firebaseInit.js'; 
+  import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+  import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
+  document.querySelector('#user_login_form').addEventListener('submit', async function (e) {
+    e.preventDefault();
 
+    const email = document.querySelector('input[name="email"]').value;
+    const password = document.querySelector('input[name="password"]').value;
+    const loginErrorDiv = document.getElementById('loginError');
+    
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
 
+      // Check if the user is in the admin collection
+      const adminRef = doc(db, "admin", user.uid);
+      const adminSnap = await getDoc(adminRef);
+
+      if (adminSnap.exists()) {
+        window.location.href = `authenticate.php?uid=${encodeURIComponent(user.uid)}`;
+      } else {
+        // Check if the user is in the auctioneers collection
+        const auctioneersRef = doc(db, "auctioneers", user.uid);
+        const auctioneersSnap = await getDoc(auctioneersRef);
+
+        if (auctioneersSnap.exists()) {
+          window.location.href = `authenticate.php?uid=${encodeURIComponent(user.uid)}&status=auctioneers`;
+        } else {
+          // Check if the user is in the bidders collection
+          const biddersRef = doc(db, "bidders", user.uid);
+          const biddersSnap = await getDoc(biddersRef);
+
+          if (biddersSnap.exists()) {
+            window.location.href = `authenticate.php?uid=${encodeURIComponent(user.uid)}`;
+          } else {
+            // User is not found in any role-specific collections
+            loginErrorDiv.textContent = 'Wrong email or password. Please try again.';
+            loginErrorDiv.style.display = 'block'; 
+          }
+        }
+      }
+    } catch (error) {
+      // Display an error message to the user
+      loginErrorDiv.textContent = 'Wrong email or password. Please try again.';
+      loginErrorDiv.style.display = 'block';
+    }
+  });
+</script>
 
 <?php
 

@@ -20,12 +20,18 @@
 
     <!--====== App ======-->
     <link rel="stylesheet" href="css/app.css">
+
+    <style>
+        .custom-margin-top {
+            margin-top: 30px; /* or any value that works for your layout */
+        }
+    </style>
 </head>
 <body class="config">
     <div class="preloader is-active">
         <div class="preloader__wrap">
-
-            <img class="preloader__img" src="images/preloader.png" alt=""></div>
+            <img class="preloader__img" src="images/preloader.png" alt="">
+        </div>
     </div>
 
     <!--====== Main App ======-->
@@ -80,26 +86,38 @@
 
                                         <span class="js-menu-toggle"></span>
                                         <ul style="width:120px">
-                                            <li>
-
-                                                <a href="dashboard.php"><i class="fas fa-user-circle u-s-m-r-6"></i>
-
-                                                    <span>Account</span></a></li>
-                                            <li>
-
-                                                <a href="signup.php"><i class="fas fa-user-plus u-s-m-r-6"></i>
-
-                                                    <span>Sign Up</span></a></li>
-                                            <li>
-
-                                                <a href="signin.php"><i class="fas fa-lock u-s-m-r-6"></i>
-
-                                                    <span>Sign In</span></a></li>
-                                            <li>
-
-                                                <a href="signup.php"><i class="fas fa-lock-open u-s-m-r-6"></i>
-
-                                                    <span>Sign Out</span></a></li>
+                                            <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
+                                                <!-- User is logged in, show Account and Sign Out -->
+                                                <li>
+                                                    <a href="dashboard.php"><i class="fas fa-user-circle u-s-m-r-6"></i>
+                                                        <span>Account</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="logout.php"><i class="fas fa-lock-open u-s-m-r-6"></i>
+                                                        <span>Sign Out</span>
+                                                    </a>
+                                                </li>
+                                                <?php if (isset($_SESSION['status']) && $_SESSION['status'] === 'auctioneers'): ?>
+                                                    <li>
+                                                        <a href="auction.php"><i class="fas fa-tags u-s-m-r-6"></i>
+                                                            <span>Auction</span>
+                                                        </a>
+                                                    </li>
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <!-- User is not logged in, show Sign In and Sign Up -->
+                                                <li>
+                                                    <a href="signup.php"><i class="fas fa-user-plus u-s-m-r-6"></i>
+                                                        <span>Sign Up</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="signin.php"><i class="fas fa-lock u-s-m-r-6"></i>
+                                                        <span>Sign In</span>
+                                                    </a>
+                                                </li>
+                                            <?php endif; ?>
                                         </ul>
                                         <!--====== End - Dropdown ======-->
                                     </li>
@@ -179,707 +197,60 @@
                                             <div class="mega-menu-wrap">
                                                 <div class="mega-menu-list">
                                                     <ul>
-                                                        <li class="js-active">
-
-                                                            <a href="shop-side-version-2.php"><i class="fas fa-tv u-s-m-r-6"></i>
-
-                                                                <span>Electronics</span></a>
-
-                                                            <span class="js-menu-toggle js-toggle-mark"></span></li>
+                                                        <!-- <li>
+                                                            <a href="shop-side-version-2.php">
+                                                                <span>Men's Clothing</span>
+                                                            </a>
+                                                            <span class="js-menu-toggle"></span>
+                                                        </li>
                                                         <li>
-
-                                                            <a href="shop-side-version-2.php"><i class="fas fa-female u-s-m-r-6"></i>
-
-                                                                <span>Women's Clothing</span></a>
-
-                                                            <span class="js-menu-toggle"></span></li>
-                                                        <li>
-
-                                                            <a href="shop-side-version-2.php"><i class="fas fa-male u-s-m-r-6"></i>
-
-                                                                <span>Men's Clothing</span></a>
-
-                                                            <span class="js-menu-toggle"></span></li>
-                                                        <li>
-
-                                                            <a href="index.php"><i class="fas fa-utensils u-s-m-r-6"></i>
-
-                                                                <span>Food & Supplies</span></a>
-
-                                                            <span class="js-menu-toggle"></span></li>
-                                                        <li>
-
-                                                            <a href="index.php"><i class="fas fa-couch u-s-m-r-6"></i>
-
-                                                                <span>Furniture & Decor</span></a>
-
-                                                            <span class="js-menu-toggle"></span></li>
-                                                        <li>
-
-                                                            <a href="index.php"><i class="fas fa-football-ball u-s-m-r-6"></i>
-
-                                                                <span>Sports & Game</span></a>
-
-                                                            <span class="js-menu-toggle"></span></li>
-                                                        <li>
-
-                                                            <a href="index.php"><i class="fas fa-heartbeat u-s-m-r-6"></i>
-
-                                                                <span>Beauty & Health</span></a>
-
-                                                            <span class="js-menu-toggle"></span></li>
+                                                            <a href="index.php">
+                                                                <span>Beauty & Health</span>
+                                                            </a>
+                                                            <span class="js-menu-toggle"></span>
+                                                        </li> -->
                                                     </ul>
                                                 </div>
 
-                                                <!--====== Electronics ======-->
-                                                <div class="mega-menu-content js-active">
-
-                                                    <!--====== Mega Menu Row ======-->
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">3D PRINTER & SUPPLIES</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">3d Printer</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">3d Printing Pen</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">3d Printing Accessories</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">3d Printer Module Board</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">HOME AUDIO & VIDEO</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">TV Boxes</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">TC Receiver & Accessories</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Display Dongle</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Home Theater System</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">MEDIA PLAYERS</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Earphones</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Mp3 Players</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Speakers & Radios</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Microphones</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">VIDEO GAME ACCESSORIES</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Nintendo Video Games Accessories</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Sony Video Games Accessories</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Xbox Video Games Accessories</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <!--====== End - Mega Menu Row ======-->
-                                                    <br>
-
-                                                    <!--====== Mega Menu Row ======-->
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">SECURITY & PROTECTION</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Security Cameras</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Alarm System</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Security Gadgets</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">CCTV Security & Accessories</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">PHOTOGRAPHY & CAMERA</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Digital Cameras</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Sport Camera & Accessories</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Camera Accessories</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Lenses & Accessories</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">ARDUINO COMPATIBLE</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Raspberry Pi & Orange Pi</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Module Board</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Smart Robot</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Board Kits</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">DSLR Camera</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Nikon Cameras</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Canon Camera</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Sony Camera</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">DSLR Lenses</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <!--====== End - Mega Menu Row ======-->
-                                                    <br>
-
-                                                    <!--====== Mega Menu Row ======-->
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">NECESSARY ACCESSORIES</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Flash Cards</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Memory Cards</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Flash Pins</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Compact Discs</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-9 mega-image">
-                                                            <div class="mega-banner">
-
-                                                                <a class="u-d-block" href="shop-side-version-2.php">
-
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-0.jpg" alt=""></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <!--====== End - Mega Menu Row ======-->
-                                                </div>
-                                                <!--====== End - Electronics ======-->
-
-
-                                                <!--====== Women ======-->
-                                                <div class="mega-menu-content">
-
-                                                    <!--====== Mega Menu Row ======-->
-                                                    <div class="row">
-                                                        <div class="col-lg-6 mega-image">
-                                                            <div class="mega-banner">
-
-                                                                <a class="u-d-block" href="shop-side-version-2.php">
-
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-1.jpg" alt=""></a></div>
-                                                        </div>
-                                                        <div class="col-lg-6 mega-image">
-                                                            <div class="mega-banner">
-
-                                                                <a class="u-d-block" href="shop-side-version-2.php">
-
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-2.jpg" alt=""></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <!--====== End - Mega Menu Row ======-->
-                                                    <br>
-
-                                                    <!--====== Mega Menu Row ======-->
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">HOT CATEGORIES</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Dresses</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Blouses & Shirts</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">T-shirts</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Rompers</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">INTIMATES</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Bras</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Brief Sets</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Bustiers & Corsets</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Panties</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">WEDDING & EVENTS</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Wedding Dresses</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Evening Dresses</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Prom Dresses</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Flower Dresses</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">BOTTOMS</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Skirts</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Shorts</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Leggings</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Jeans</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <!--====== End - Mega Menu Row ======-->
-                                                    <br>
-
-                                                    <!--====== Mega Menu Row ======-->
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">OUTWEAR</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Blazers</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Basics Jackets</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Trench</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Leather & Suede</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">JACKETS</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Denim Jackets</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Trucker Jackets</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Windbreaker Jackets</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Leather Jackets</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">ACCESSORIES</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Tech Accessories</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Headwear</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Baseball Caps</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Belts</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">OTHER ACCESSORIES</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Bags</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Wallets</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Watches</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Sunglasses</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <!--====== End - Mega Menu Row ======-->
-                                                    <br>
-
-                                                    <!--====== Mega Menu Row ======-->
-                                                    <div class="row">
-                                                        <div class="col-lg-9 mega-image">
-                                                            <div class="mega-banner">
-
-                                                                <a class="u-d-block" href="shop-side-version-2.php">
-
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-3.jpg" alt=""></a></div>
-                                                        </div>
-                                                        <div class="col-lg-3 mega-image">
-                                                            <div class="mega-banner">
-
-                                                                <a class="u-d-block" href="shop-side-version-2.php">
-
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-4.jpg" alt=""></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <!--====== End - Mega Menu Row ======-->
-                                                </div>
-                                                <!--====== End - Women ======-->
-
-
                                                 <!--====== Men ======-->
-                                                <div class="mega-menu-content">
-
-                                                    <!--====== Mega Menu Row ======-->
+                                                <!-- <div class="mega-menu-content js-active">
                                                     <div class="row">
-                                                        <div class="col-lg-4 mega-image">
+                                                        <div class="col-lg-4 mega-image custom-margin-top">
                                                             <div class="mega-banner">
-
                                                                 <a class="u-d-block" href="shop-side-version-2.php">
-
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-5.jpg" alt=""></a></div>
+                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-5.jpg" alt="">
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-lg-4 mega-image">
+                                                        <div class="col-lg-4 mega-image custom-margin-top">
                                                             <div class="mega-banner">
-
                                                                 <a class="u-d-block" href="shop-side-version-2.php">
-
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-6.jpg" alt=""></a></div>
+                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-6.jpg" alt="">
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-lg-4 mega-image">
+                                                        <div class="col-lg-4 mega-image custom-margin-top">
                                                             <div class="mega-banner">
-
                                                                 <a class="u-d-block" href="shop-side-version-2.php">
-
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-7.jpg" alt=""></a></div>
+                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-7.jpg" alt="">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 mega-image custom-margin-top">
+                                                            <div class="mega-banner">
+                                                                <a class="u-d-block" href="shop-side-version-2.php">
+                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-7.jpg" alt="">
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <!--====== End - Mega Menu Row ======-->
-                                                    <br>
-
-                                                    <!--====== Mega Menu Row ======-->
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">HOT SALE</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">T-Shirts</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Tank Tops</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Polo</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Shirts</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">OUTWEAR</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Hoodies</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Trench</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Parkas</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Sweaters</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">BOTTOMS</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Casual Pants</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Cargo Pants</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Jeans</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Shorts</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">UNDERWEAR</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Boxers</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Briefs</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Robes</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Socks</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <!--====== End - Mega Menu Row ======-->
-                                                    <br>
-
-                                                    <!--====== Mega Menu Row ======-->
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">JACKETS</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Denim Jackets</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Trucker Jackets</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Windbreaker Jackets</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Leather Jackets</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">SUNGLASSES</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Pilot</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Wayfarer</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Square</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Round</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">ACCESSORIES</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Eyewear Frames</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Scarves</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Hats</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Belts</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <ul>
-                                                                <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.php">OTHER ACCESSORIES</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Bags</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Wallets</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Watches</a></li>
-                                                                <li>
-
-                                                                    <a href="shop-side-version-2.php">Tech Accessories</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <!--====== End - Mega Menu Row ======-->
-                                                    <br>
-
-                                                    <!--====== Mega Menu Row ======-->
-                                                    <div class="row">
-                                                        <div class="col-lg-6 mega-image">
-                                                            <div class="mega-banner">
-
-                                                                <a class="u-d-block" href="shop-side-version-2.php">
-
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-8.jpg" alt=""></a></div>
-                                                        </div>
-                                                        <div class="col-lg-6 mega-image">
-                                                            <div class="mega-banner">
-
-                                                                <a class="u-d-block" href="shop-side-version-2.php">
-
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-9.jpg" alt=""></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <!--====== End - Mega Menu Row ======-->
-                                                </div>
+                                                </div> -->
                                                 <!--====== End - Men ======-->
 
-
                                                 <!--====== No Sub Categories ======-->
-                                                <div class="mega-menu-content">
+                                                <!-- <div class="mega-menu-content">
                                                     <h5>No Categories</h5>
-                                                </div>
-                                                <!--====== End - No Sub Categories ======-->
-
-
-                                                <!--====== No Sub Categories ======-->
-                                                <div class="mega-menu-content">
-                                                    <h5>No Categories</h5>
-                                                </div>
-                                                <!--====== End - No Sub Categories ======-->
-
-
-                                                <!--====== No Sub Categories ======-->
-                                                <div class="mega-menu-content">
-                                                    <h5>No Categories</h5>
-                                                </div>
-                                                <!--====== End - No Sub Categories ======-->
-
-
-                                                <!--====== No Sub Categories ======-->
-                                                <div class="mega-menu-content">
-                                                    <h5>No Categories</h5>
-                                                </div>
-                                                <!--====== End - No Sub Categories ======-->
+                                                </div> -->
                                             </div>
                                         </div>
                                         <!--====== End - Mega Menu ======-->
@@ -1085,3 +456,78 @@
             <!--====== End - Nav 2 ======-->
         </header>
         <!--====== End - Main Header ======-->
+
+<script type="module">
+    // Importing the necessary functions from Firebase
+    import { db } from './firebase/firebaseInit.js';
+    import { collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+    async function renderProducts() {
+        const querySnapshot = await getDocs(collection(db, "products"));
+
+        const categorizedProducts = {};
+
+        querySnapshot.forEach((doc) => {
+            const product = doc.data();
+            
+            if (!categorizedProducts[product.category]) {
+                categorizedProducts[product.category] = [];
+            }
+            
+            categorizedProducts[product.category].push(product);
+        });
+
+        // Find the menu where you want to insert the categories and products
+        const megaMenuList = document.querySelector('.mega-menu-list > ul');
+        const megaMenuWrap = document.querySelector('.mega-menu-wrap');
+
+        // Clear the contents before appending new ones
+        megaMenuList.innerHTML = '';
+
+        // Render categories
+        for (const [category, products] of Object.entries(categorizedProducts)) {
+            // Category list
+            const categoryListItem = document.createElement('li');
+            const categoryLink = document.createElement('a');
+            const categorySpan = document.createElement('span');
+            const categorySpan2 = document.createElement('span');
+            categoryLink.href = "shop-side-version-2.php?category=" + category; // Change URL as needed
+            categorySpan.innerText = category;
+            categorySpan2.className = 'js-menu-toggle';
+
+            categoryLink.appendChild(categorySpan);
+            categoryListItem.appendChild(categoryLink);
+            categoryListItem.appendChild(categorySpan2);
+            megaMenuList.appendChild(categoryListItem);
+
+            // Create mega-menu-content for each category
+            const megaMenuContent = document.createElement('div');
+            megaMenuContent.className = 'mega-menu-content';
+
+            // Creating a row for the product images
+            const productsRow = document.createElement('div');
+            productsRow.className = 'row';
+
+            products.forEach((product) => {
+                const productCol = document.createElement('div');
+                productCol.className = 'col-lg-4 mega-image custom-margin-top';
+                productCol.innerHTML = `
+                    <div class="mega-banner">
+                        <a class="u-d-block" href="shop-side-version-2.php">
+                            <img class="u-img-fluid u-d-block" src="${product.imageUrl}" alt="${product.title}" style="width: 370px; height: 270px; object-fit: cover;">
+                        </a>
+                    </div>
+                `;
+                productsRow.appendChild(productCol);
+            });
+
+            megaMenuContent.appendChild(productsRow);
+
+            megaMenuWrap.appendChild(megaMenuContent);
+        }
+        $('#navigation1').shopNav();
+
+    }
+
+    renderProducts();
+</script>

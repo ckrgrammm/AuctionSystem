@@ -37,7 +37,7 @@
         <div id="wrapper">
 
             <!-- Navigation -->
-            <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] == true): ?>
+            <?php if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] == true): ?>
                 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -105,15 +105,15 @@
                                 </li>
 
                                 <li>
-                                    <a href=".php"><i class="fa fa-gavel fa-fw"></i> Bids</a>
+                                    <a href="bids.php"><i class="fa fa-gavel fa-fw"></i> Bids</a>
                                 </li>
 
                                 <li>
-                                    <a href=".php"><i class="fa fa-commenting fa-fw"></i> Reviews and Ratings</a>
+                                    <a href="reviews&ratings.php"><i class="fa fa-commenting fa-fw"></i> Reviews and Ratings</a>
                                 </li>
 
                                 <li>
-                                    <a href=".php"><i class="fa fa-credit-card fa-fw"></i> Payments</a>
+                                    <a href="payments.php"><i class="fa fa-credit-card fa-fw"></i> Payments</a>
                                 </li>
                             </ul>
                         </div>

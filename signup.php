@@ -1,5 +1,6 @@
 <?php
 $title = "Sign Up";
+session_start();
 include('header.php');
 ?>
 
@@ -128,7 +129,8 @@ include('header.php');
 
                                     <div class="u-s-m-b-30">
 
-                                        <label class="gl-label" for="gender">STATUS *</label><select class="select-box select-box--primary-style u-w-100" id="status">
+                                        <label class="gl-label" for="status">STATUS *</label>
+                                        <select class="select-box select-box--primary-style u-w-100" id="status" name="status">
                                             <option selected>Select</option>
                                             <option value="Auctioneer">Auctioneer</option>
                                             <option value="Bidder">Bidder</option>

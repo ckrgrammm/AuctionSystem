@@ -16,7 +16,7 @@ include_once('../../includes/header.php');
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-6">
-            <h1 class="page-header">Products</h1>
+            <h1 class="page-header">Reviews & Ratings</h1>
         </div>
         <div class="col-lg-6">
             <div class="page-action-links text-right">

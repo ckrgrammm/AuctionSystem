@@ -1,7 +1,7 @@
 <?php
 $title = "Home"; // Define the title before including header.php
+session_start();
 include("header.php");
-
 
 ?>
 

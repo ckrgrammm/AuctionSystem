@@ -7,8 +7,6 @@ session_destroy();
 // Prepare a JavaScript to show a logout message.
 echo "<script>
         alert('Logged out successfully.');
-        window.location.href='login.php';
+        window.location.href='index.php';
       </script>";
 exit();
-
- ?>
