@@ -497,7 +497,7 @@ include("footer.php");
 
         alert("Payment Successfully")
         // Step 6: Redirect the user to the payment history page
-        window.location.href = `payment-history.php`;
+        window.location.href = `dash-my-order.php`;
     }
 
     // Call this function when the user submits the form
