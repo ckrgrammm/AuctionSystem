@@ -257,6 +257,9 @@
                                     <li>
                                         <a href="index.php"><i class="fas fa-home"></i></a>
                                     </li>
+                                    <li>
+                                        <a href="reviews&ratings.php"><i class="fas fa-comment"></i></a>
+                                    </li>
                                 </ul>
                                 <!--====== End - List ======-->
                             </div>

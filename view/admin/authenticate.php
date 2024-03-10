@@ -5,6 +5,6 @@
 	$_SESSION['aid'] = $_GET['aid'];
 
 	// Redirect to the main admin page
-	header('Location: index.php');
+	header('Location: customers.php');
 	exit();
 ?>
