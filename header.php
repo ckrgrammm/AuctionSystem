@@ -25,6 +25,48 @@
         .custom-margin-top {
             margin-top: 30px; /* or any value that works for your layout */
         }
+
+        #suggestion-box {
+            display: none; /* Hidden by default */
+            position: absolute;
+            background: white;
+            width: 100%; /* Match the width of the search bar */
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000; /* High z-index to ensure it's on top */
+            border: 1px solid #CCC;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for better visibility */
+            top: 100%; /* Directly below the search input */
+            left: 0;
+        }
+
+        .suggestion-item {
+            padding: 10px;
+            border-bottom: 1px solid #EEE;
+            cursor: pointer;
+            display: flex; /* Aligns the image and text side by side */
+            align-items: center; /* Vertically centers the content in the suggestion item */
+        }
+
+        .suggestion-item:hover {
+            background-color: #F9F9F9;
+        }
+
+        .suggestion-item img {
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 50%; /* Makes the image round */
+        }
+
+        .suggestion-item-title {
+            font-size: 1rem; /* Adjust size as needed */
+            font-weight: 600; /* Makes the font bold */
+            color: #333; /* Dark color for better readability */
+            margin-right: auto; /* Pushes the price to the right */
+        }
+
     </style>
 </head>
 <body class="config">
@@ -60,9 +102,14 @@
 
                             <label for="main-search"></label>
 
-                            <input class="input-text input-text--border-radius input-text--style-1" type="text" id="main-search" placeholder="Search">
+                            <input class="input-text input-text--border-radius input-text--style-1" type="text" id="main-search" placeholder="Search" onkeyup="searchProducts(this.value)">
+                            <!-- Suggestion Box -->
+                            <div id="suggestion-box">
+                                <!-- Search suggestions will appear here -->
+                            </div>
 
-                            <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button></form>
+                            <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button>
+                        </form>
                         <!--====== End - Search Form ======-->
 
 
@@ -89,7 +136,7 @@
                                             <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
                                                 <!-- User is logged in, show Account and Sign Out -->
                                                 <li>
-                                                    <a href="dashboard.php"><i class="fas fa-user-circle u-s-m-r-6"></i>
+                                                    <a href="dash-my-profile.php"><i class="fas fa-user-circle u-s-m-r-6"></i>
                                                         <span>Account</span>
                                                     </a>
                                                 </li>
@@ -121,39 +168,6 @@
                                         </ul>
                                         <!--====== End - Dropdown ======-->
                                     </li>
-                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="Settings">
-
-                                        <a><i class="fas fa-user-cog"></i></a>
-
-                                        <!--====== Dropdown ======-->
-
-                                        <span class="js-menu-toggle"></span>
-                                        <ul style="width:120px">
-                                
-                                            <li class="has-dropdown has-dropdown--ul-right-100">
-
-                                                <a>Currency<i class="fas fa-angle-down u-s-m-l-6"></i></a>
-
-                                                <!--====== Dropdown ======-->
-
-                                                <span class="js-menu-toggle"></span>
-                                                <ul style="width:225px">
-                                                    <li>
-
-                                                        <a class="u-c-brand">$ - US DOLLAR</a></li>
-                                                    <li>
-
-                                                        <a>£ - BRITISH POUND STERLING</a></li>
-                                                    <li>
-
-                                                        <a>€ - EURO</a></li>
-                                                </ul>
-                                                <!--====== End - Dropdown ======-->
-                                            </li>
-                                        </ul>
-                                        <!--====== End - Dropdown ======-->
-                                    </li>
-                            
                                 </ul>
                                 <!--====== End - List ======-->
                             </div>
@@ -197,60 +211,8 @@
                                             <div class="mega-menu-wrap">
                                                 <div class="mega-menu-list">
                                                     <ul>
-                                                        <!-- <li>
-                                                            <a href="shop-side-version-2.php">
-                                                                <span>Men's Clothing</span>
-                                                            </a>
-                                                            <span class="js-menu-toggle"></span>
-                                                        </li>
-                                                        <li>
-                                                            <a href="index.php">
-                                                                <span>Beauty & Health</span>
-                                                            </a>
-                                                            <span class="js-menu-toggle"></span>
-                                                        </li> -->
                                                     </ul>
                                                 </div>
-
-                                                <!--====== Men ======-->
-                                                <!-- <div class="mega-menu-content js-active">
-                                                    <div class="row">
-                                                        <div class="col-lg-4 mega-image custom-margin-top">
-                                                            <div class="mega-banner">
-                                                                <a class="u-d-block" href="shop-side-version-2.php">
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-5.jpg" alt="">
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4 mega-image custom-margin-top">
-                                                            <div class="mega-banner">
-                                                                <a class="u-d-block" href="shop-side-version-2.php">
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-6.jpg" alt="">
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4 mega-image custom-margin-top">
-                                                            <div class="mega-banner">
-                                                                <a class="u-d-block" href="shop-side-version-2.php">
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-7.jpg" alt="">
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4 mega-image custom-margin-top">
-                                                            <div class="mega-banner">
-                                                                <a class="u-d-block" href="shop-side-version-2.php">
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-7.jpg" alt="">
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
-                                                <!--====== End - Men ======-->
-
-                                                <!--====== No Sub Categories ======-->
-                                                <!-- <div class="mega-menu-content">
-                                                    <h5>No Categories</h5>
-                                                </div> -->
                                             </div>
                                         </div>
                                         <!--====== End - Mega Menu ======-->
@@ -293,155 +255,7 @@
                                 <!--====== List ======-->
                                 <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
                                     <li>
-
-                                        <a href="index.php"><i class="fas fa-home"></i></a></li>
-                                    <li>
-
-                                        <a href="wishlist.php"><i class="far fa-heart"></i></a></li>
-                                    <li class="has-dropdown">
-
-                                        <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
-
-                                            <span class="total-item-round">2</span></a>
-
-                                        <!--====== Dropdown ======-->
-
-                                        <span class="js-menu-toggle"></span>
-                                        <div class="mini-cart">
-
-                                            <!--====== Mini Product Container ======-->
-                                            <div class="mini-product-container gl-scroll u-s-m-b-15">
-
-                                                <!--====== Card for mini cart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
-
-                                                            <a class="mini-product__link" href="product-detail.php">
-
-                                                                <img class="u-img-fluid" src="images/product/electronic/product3.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.php">Electronics</a></span>
-
-                                                            <span class="mini-product__name">
-
-                                                                <a href="product-detail.php">Yellow Wireless Headphone</a></span>
-
-                                                            <span class="mini-product__quantity">1 x</span>
-
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
-
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
-
-
-                                                <!--====== Card for mini cart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
-
-                                                            <a class="mini-product__link" href="product-detail.php">
-
-                                                                <img class="u-img-fluid" src="images/product/electronic/product18.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.php">Electronics</a></span>
-
-                                                            <span class="mini-product__name">
-
-                                                                <a href="product-detail.php">Nikon DSLR Camera 4k</a></span>
-
-                                                            <span class="mini-product__quantity">1 x</span>
-
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
-
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
-
-
-                                                <!--====== Card for mini cartcart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
-
-                                                            <a class="mini-product__link" href="product-detail.php">
-
-                                                                <img class="u-img-fluid" src="images/product/women/product8.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.php">Women Clothing</a></span>
-
-                                                            <span class="mini-product__name">
-
-                                                                <a href="product-detail.php">New Dress D Nice Elegant</a></span>
-
-                                                            <span class="mini-product__quantity">1 x</span>
-
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
-
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
-
-
-                                                <!--====== Card for mini cart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
-
-                                                            <a class="mini-product__link" href="product-detail.php">
-
-                                                                <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.php">Men Clothing</a></span>
-
-                                                            <span class="mini-product__name">
-
-                                                                <a href="product-detail.php">New Fashion D Nice Elegant</a></span>
-
-                                                            <span class="mini-product__quantity">1 x</span>
-
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
-
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
-                                            </div>
-                                            <!--====== End - Mini Product Container ======-->
-
-
-                                            <!--====== Mini Product Statistics ======-->
-                                            <div class="mini-product-stat">
-                                                <div class="mini-total">
-
-                                                    <span class="subtotal-text">SUBTOTAL</span>
-
-                                                    <span class="subtotal-value">$16</span></div>
-                                                <div class="mini-action">
-
-                                                    <a class="mini-link btn--e-brand-b-2" href="checkout.php">PROCEED TO CHECKOUT</a>
-
-                                                    <a class="mini-link btn--e-transparent-secondary-b-2" href="cart.php">VIEW CART</a></div>
-                                            </div>
-                                            <!--====== End - Mini Product Statistics ======-->
-                                        </div>
-                                        <!--====== End - Dropdown ======-->
+                                        <a href="index.php"><i class="fas fa-home"></i></a>
                                     </li>
                                 </ul>
                                 <!--====== End - List ======-->
@@ -469,12 +283,15 @@
 
         querySnapshot.forEach((doc) => {
             const product = doc.data();
+            if (product.deleted === 0 && product.status === 'active') {
+                product.id = doc.id;
+
+                if (!categorizedProducts[product.category]) {
+                    categorizedProducts[product.category] = [];
+                }
             
-            if (!categorizedProducts[product.category]) {
-                categorizedProducts[product.category] = [];
+                categorizedProducts[product.category].push(product);
             }
-            
-            categorizedProducts[product.category].push(product);
         });
 
         // Find the menu where you want to insert the categories and products
@@ -513,7 +330,7 @@
                 productCol.className = 'col-lg-4 mega-image custom-margin-top';
                 productCol.innerHTML = `
                     <div class="mega-banner">
-                        <a class="u-d-block" href="shop-side-version-2.php">
+                        <a class="u-d-block" href="product-detail.php?category=${product.category}&productId=${product.id}">
                             <img class="u-img-fluid u-d-block" src="${product.imageUrl}" alt="${product.title}" style="width: 370px; height: 270px; object-fit: cover;">
                         </a>
                     </div>
@@ -530,4 +347,52 @@
     }
 
     renderProducts();
+</script>
+
+<script type="module">
+    import { db } from './firebase/firebaseInit.js';
+    import { collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+    // Function to search products
+    async function searchProducts(searchText) {
+        if (searchText.length < 1) {
+            document.getElementById('suggestion-box').style.display = 'none';
+            return;
+        }
+
+        // Query the products collection
+        const productsRef = collection(db, "products");
+        const q = query(
+            productsRef, 
+            where("title", ">=", searchText), 
+            where("title", "<=", searchText + '\uf8ff'), 
+        );
+
+        const querySnapshot = await getDocs(q);
+        let suggestionsHTML = '';
+        let result = false;
+        // console.log(`Found ${querySnapshot.docs.length} items`); // Debugging lin
+        querySnapshot.forEach((doc) => {
+            const product = doc.data();
+            // console.log(`Item: ${product.title}`);
+            if(product.deleted == 0 && product.status == "active"){
+                result = true;
+                suggestionsHTML += `
+                    <div class="suggestion-item" onclick="window.location.href='product-detail.php?productId=${doc.id}&category=${product.category}'">
+                        <img src="${product.imageUrl}" alt="${product.title}" />
+                        <span class="suggestion-item-title">${product.title}</span>
+                    </div>
+                `;
+            }
+        });
+
+        if(result){
+            const suggestionBox = document.getElementById('suggestion-box');
+            suggestionBox.innerHTML = suggestionsHTML;
+            suggestionBox.style.display = 'block';
+        }
+        
+    }
+
+    window.searchProducts = searchProducts;
 </script>

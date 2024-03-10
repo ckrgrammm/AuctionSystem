@@ -107,7 +107,8 @@ require_once '../../includes/header.php';
                 endTime,
                 sellerId: auth.currentUser.uid, // Assuming the seller is the current user
                 currentBid: startPrice, // Initial current bid is the starting price
-                status: 'active' // Initial status
+                status: 'active', // Initial status
+                deleted: 0
             });
 
             console.log("Product saved to Firestore");

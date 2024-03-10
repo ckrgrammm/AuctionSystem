@@ -1,9 +1,30 @@
 <?php
+$title = "Payment";
+session_start();
+require_once 'auth_validate.php';
 include("header.php");
-
+$productId = isset($_GET['productId']) ? $_GET['productId'] : '';
 
 ?>
 
+<style>
+    .o-card__img-wrap {
+        width: 60px;  /* or any other size */
+        height: 60px; /* or any other size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden; /* This will hide any part of the image that exceeds the dimensions */
+    }
+
+    .o-card__img-wrap img {
+        width: 100%;
+        height: auto;
+        object-fit: cover; 
+        min-height: 100%; /* Ensures the image covers the height */
+    }
+
+</style>
 
         <!--====== App Content ======-->
         <div class="app-content">
@@ -31,94 +52,6 @@ include("header.php");
             </div>
             <!--====== End - Section 1 ======-->
 
-
-            <!--====== Section 2 ======-->
-            <div class="u-s-p-b-60">
-
-                <!--====== Section Content ======-->
-                <div class="section__content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div id="checkout-msg-group">
-                                    <div class="msg u-s-m-b-30">
-
-                                        <span class="msg__text">Returning customer?
-
-                                            <a class="gl-link" href="#return-customer" data-toggle="collapse">Click here to login</a></span>
-                                        <div class="collapse" id="return-customer" data-parent="#checkout-msg-group">
-                                            <div class="l-f u-s-m-b-16">
-
-                                                <span class="gl-text u-s-m-b-16">If you have an account with us, please log in.</span>
-                                                <form class="l-f__form">
-                                                    <div class="gl-inline">
-                                                        <div class="u-s-m-b-15">
-
-                                                            <label class="gl-label" for="login-email">E-MAIL *</label>
-
-                                                            <input class="input-text input-text--primary-style" type="text" id="login-email" placeholder="Enter E-mail"></div>
-                                                        <div class="u-s-m-b-15">
-
-                                                            <label class="gl-label" for="login-password">PASSWORD *</label>
-
-                                                            <input class="input-text input-text--primary-style" type="text" id="login-password" placeholder="Enter Password"></div>
-                                                    </div>
-                                                    <div class="gl-inline">
-                                                        <div class="u-s-m-b-15">
-
-                                                            <button class="btn btn--e-transparent-brand-b-2" type="submit">LOGIN</button></div>
-                                                        <div class="u-s-m-b-15">
-
-                                                            <a class="gl-link" href="lost-password.html">Lost Your Password?</a></div>
-                                                    </div>
-
-                                                    <!--====== Check Box ======-->
-                                                    <div class="check-box">
-
-                                                        <input type="checkbox" id="remember-me">
-                                                        <div class="check-box__state check-box__state--primary">
-
-                                                            <label class="check-box__label" for="remember-me">Remember Me</label></div>
-                                                    </div>
-                                                    <!--====== End - Check Box ======-->
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="msg">
-
-                                        <span class="msg__text">Have a coupon?
-
-                                            <a class="gl-link" href="#have-coupon" data-toggle="collapse">Click Here to enter your code</a></span>
-                                        <div class="collapse" id="have-coupon" data-parent="#checkout-msg-group">
-                                            <div class="c-f u-s-m-b-16">
-
-                                                <span class="gl-text u-s-m-b-16">Enter your coupon code if you have one.</span>
-                                                <form class="c-f__form">
-                                                    <div class="u-s-m-b-16">
-                                                        <div class="u-s-m-b-15">
-
-                                                            <label for="coupon"></label>
-
-                                                            <input class="input-text input-text--primary-style" type="text" id="coupon" placeholder="Coupon Code"></div>
-                                                        <div class="u-s-m-b-15">
-
-                                                            <button class="btn btn--e-transparent-brand-b-2" type="submit">APPLY</button></div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--====== End - Section Content ======-->
-            </div>
-            <!--====== End - Section 2 ======-->
-
-
             <!--====== Section 3 ======-->
             <div class="u-s-p-b-60">
 
@@ -131,19 +64,6 @@ include("header.php");
                                     <h1 class="checkout-f__h1">DELIVERY INFORMATION</h1>
                                     <form class="checkout-f__delivery">
                                         <div class="u-s-m-b-30">
-                                            <div class="u-s-m-b-15">
-
-                                                <!--====== Check Box ======-->
-                                                <div class="check-box">
-
-                                                    <input type="checkbox" id="get-address">
-                                                    <div class="check-box__state check-box__state--primary">
-
-                                                        <label class="check-box__label" for="get-address">Use default shipping and billing address from account</label></div>
-                                                </div>
-                                                <!--====== End - Check Box ======-->
-                                            </div>
-
                                             <!--====== First Name, Last Name ======-->
                                             <div class="gl-inline">
                                                 <div class="u-s-m-b-15">
@@ -240,21 +160,8 @@ include("header.php");
 
                                                 <input class="input-text input-text--primary-style" type="text" id="billing-zip" placeholder="Zip/Postal Code" data-bill=""></div>
                                             <!--====== End - ZIP/POSTAL ======-->
-                                            <div class="u-s-m-b-10">
-
-                                                <!--====== Check Box ======-->
-                                                <div class="check-box">
-
-                                                    <input type="checkbox" id="make-default-address" data-bill="">
-                                                    <div class="check-box__state check-box__state--primary">
-
-                                                        <label class="check-box__label" for="make-default-address">Make default shipping and billing address</label></div>
-                                                </div>
-                                                <!--====== End - Check Box ======-->
-                                            </div>
-                                            <div class="u-s-m-b-10">
-
-                                                <a class="gl-link" href="#create-account" data-toggle="collapse">Want to create a new account?</a></div>
+                                            
+                                            
                                             <div class="collapse u-s-m-b-15" id="create-account">
 
                                                 <span class="gl-text u-s-m-b-15">Create an account by entering the information below. If you are a returning customer please login at the top of the page.</span>
@@ -267,9 +174,6 @@ include("header.php");
                                             <div class="u-s-m-b-10">
 
                                                 <label class="gl-label" for="order-note">ORDER NOTE</label><textarea class="text-area text-area--primary-style" id="order-note"></textarea></div>
-                                            <div>
-
-                                                <button class="btn btn--e-transparent-brand-b-2" type="submit">SAVE</button></div>
                                         </div>
                                     </form>
                                 </div>
@@ -283,115 +187,39 @@ include("header.php");
                                                 <div class="o-card">
                                                     <div class="o-card__flex">
                                                         <div class="o-card__img-wrap">
-
-                                                            <img class="u-img-fluid" src="images/product/electronic/product3.jpg" alt=""></div>
+                                                            <img class="u-img-fluid" src="" alt="">
+                                                        </div>
                                                         <div class="o-card__info-wrap">
-
                                                             <span class="o-card__name">
+                                                                <a href=""></a></span>
+                                                            <span class="o-card__quantity"></span>
 
-                                                                <a href="product-detail.php">Yellow Wireless Headphone</a></span>
-
-                                                            <span class="o-card__quantity">Quantity x 1</span>
-
-                                                            <span class="o-card__price">$150.00</span></div>
+                                                            <span class="o-card__price"></span>
+                                                        </div>
                                                     </div>
-
-                                                    <a class="o-card__del far fa-trash-alt"></a>
-                                                </div>
-                                                <div class="o-card">
-                                                    <div class="o-card__flex">
-                                                        <div class="o-card__img-wrap">
-
-                                                            <img class="u-img-fluid" src="images/product/electronic/product18.jpg" alt=""></div>
-                                                        <div class="o-card__info-wrap">
-
-                                                            <span class="o-card__name">
-
-                                                                <a href="product-detail.php">Nikon DSLR Camera 4k</a></span>
-
-                                                            <span class="o-card__quantity">Quantity x 1</span>
-
-                                                            <span class="o-card__price">$150.00</span></div>
-                                                    </div>
-
-                                                    <a class="o-card__del far fa-trash-alt"></a>
-                                                </div>
-                                                <div class="o-card">
-                                                    <div class="o-card__flex">
-                                                        <div class="o-card__img-wrap">
-
-                                                            <img class="u-img-fluid" src="images/product/women/product8.jpg" alt=""></div>
-                                                        <div class="o-card__info-wrap">
-
-                                                            <span class="o-card__name">
-
-                                                                <a href="product-detail.php">New Dress D Nice Elegant</a></span>
-
-                                                            <span class="o-card__quantity">Quantity x 1</span>
-
-                                                            <span class="o-card__price">$150.00</span></div>
-                                                    </div>
-
-                                                    <a class="o-card__del far fa-trash-alt"></a>
-                                                </div>
-                                                <div class="o-card">
-                                                    <div class="o-card__flex">
-                                                        <div class="o-card__img-wrap">
-
-                                                            <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></div>
-                                                        <div class="o-card__info-wrap">
-
-                                                            <span class="o-card__name">
-
-                                                                <a href="product-detail.php">New Fashion D Nice Elegant</a></span>
-
-                                                            <span class="o-card__quantity">Quantity x 1</span>
-
-                                                            <span class="o-card__price">$150.00</span></div>
-                                                    </div>
-
-                                                    <a class="o-card__del far fa-trash-alt"></a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="o-summary__section u-s-m-b-30">
-                                            <div class="o-summary__box">
-                                                <h1 class="checkout-f__h1">SHIPPING & BILLING</h1>
-                                                <div class="ship-b">
 
-                                                    <span class="ship-b__text">Ship to:</span>
-                                                    <div class="ship-b__box u-s-m-b-10">
-                                                        <p class="ship-b__p">4247 Ashford Drive Virginia VA-20006 USA (+0) 900901904</p>
-
-                                                        <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address">Edit</a>
-                                                    </div>
-                                                    <div class="ship-b__box">
-
-                                                        <span class="ship-b__text">Bill to default billing address</span>
-
-                                                        <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address">Edit</a></div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="o-summary__section u-s-m-b-30">
                                             <div class="o-summary__box">
                                                 <table class="o-summary__table">
                                                     <tbody>
                                                         <tr>
                                                             <td>SHIPPING</td>
-                                                            <td>$4.00</td>
+                                                            <td id="shipping-cost"></td>
                                                         </tr>
                                                         <tr>
                                                             <td>TAX</td>
-                                                            <td>$0.00</td>
+                                                            <td id="tax-amount"></td>
                                                         </tr>
                                                         <tr>
                                                             <td>SUBTOTAL</td>
-                                                            <td>$379.00</td>
+                                                            <td id="subtotal-amount"></td>
                                                         </tr>
                                                         <tr>
                                                             <td>GRAND TOTAL</td>
-                                                            <td>$379.00</td>
+                                                            <td id="grand-total"></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -400,7 +228,7 @@ include("header.php");
                                         <div class="o-summary__section u-s-m-b-30">
                                             <div class="o-summary__box">
                                                 <h1 class="checkout-f__h1">PAYMENT INFORMATION</h1>
-                                                <form class="checkout-f__payment">
+                                                <form class="checkout-f__payment" method="post">
                                                     <div class="u-s-m-b-10">
 
                                                         <!--====== Radio Box ======-->
@@ -503,183 +331,7 @@ include("header.php");
             <!--====== End - Section 3 ======-->
         </div>
         <!--====== End - App Content ======-->
-
-
-
-        <!--====== Modal Section ======-->
-
-
-        <!--====== Shipping Address Add Modal ======-->
-        <div class="modal fade" id="edit-ship-address">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="checkout-modal2">
-                            <div class="u-s-m-b-30">
-                                <div class="dash-l-r">
-                                    <h1 class="gl-modal-h1">Shipping Address</h1>
-                                    <div class="dash__link dash__link--brand">
-
-                                        <a data-modal="modal" data-modal-id="#add-ship-address" data-dismiss="modal">Add new Address</a></div>
-                                </div>
-                            </div>
-                            <form class="checkout-modal2__form">
-                                <div class="dash__table-2-wrap u-s-m-b-30 gl-scroll">
-                                    <table class="dash__table-2">
-                                        <thead>
-                                            <tr>
-                                                <th>Action</th>
-                                                <th>Full Name</th>
-                                                <th>Address</th>
-                                                <th>Region</th>
-                                                <th>Phone Number</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-
-                                                    <!--====== Radio Box ======-->
-                                                    <div class="radio-box">
-
-                                                        <input type="radio" id="address-1" name="default-address" checked="">
-                                                        <div class="radio-box__state radio-box__state--primary">
-
-                                                            <label class="radio-box__label" for="address-1"></label></div>
-                                                    </div>
-                                                    <!--====== End - Radio Box ======-->
-                                                </td>
-                                                <td>John Doe</td>
-                                                <td>4247 Ashford Drive Virginia VA-20006 USA</td>
-                                                <td>Virginia VA-20006 USA</td>
-                                                <td>(+0) 900901904</td>
-                                                <td>
-                                                    <div class="gl-text">Default Shipping Address</div>
-                                                    <div class="gl-text">Default Billing Address</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-
-                                                    <!--====== Radio Box ======-->
-                                                    <div class="radio-box">
-
-                                                        <input type="radio" id="address-2" name="default-address">
-                                                        <div class="radio-box__state radio-box__state--primary">
-
-                                                            <label class="radio-box__label" for="address-2"></label></div>
-                                                    </div>
-                                                    <!--====== End - Radio Box ======-->
-                                                </td>
-                                                <td>Doe John</td>
-                                                <td>1484 Abner Road</td>
-                                                <td>Eau Claire WI - Wisconsin</td>
-                                                <td>(+0) 7154419563</td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="gl-modal-btn-group">
-
-                                    <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
-
-                                    <button class="btn btn--e-grey-b-2" type="button" data-dismiss="modal">CANCEL</button></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--====== End - Shipping Address Add Modal ======-->
-
-
-        <!--====== Shipping Address Add Modal ======-->
-        <div class="modal fade" id="add-ship-address">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="checkout-modal1">
-                            <form class="checkout-modal1__form">
-                                <div class="u-s-m-b-30">
-                                    <h1 class="gl-modal-h1">Add new Shipping Address</h1>
-                                </div>
-                                <div class="gl-inline">
-                                    <div class="u-s-m-b-30">
-
-                                        <label class="gl-label" for="address-fname">FIRST NAME *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="address-fname" placeholder="First Name"></div>
-                                    <div class="u-s-m-b-30">
-
-                                        <label class="gl-label" for="address-lname">LAST NAME *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="address-lname" placeholder="Last Name"></div>
-                                </div>
-                                <div class="gl-inline">
-                                    <div class="u-s-m-b-30">
-
-                                        <label class="gl-label" for="address-phone">PHONE *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="address-phone"></div>
-                                    <div class="u-s-m-b-30">
-
-                                        <label class="gl-label" for="address-street">STREET ADDRESS *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="address-street" placeholder="House Name and Street"></div>
-                                </div>
-                                <div class="gl-inline">
-                                    <div class="u-s-m-b-30">
-
-                                        <!--====== Select Box ======-->
-
-                                        <label class="gl-label" for="address-country">COUNTRY *</label><select class="select-box select-box--primary-style" id="address-country">
-                                            <option selected value="">Choose Country</option>
-                                            <option value="uae">United Arab Emirate (UAE)</option>
-                                            <option value="uk">United Kingdom (UK)</option>
-                                            <option value="us">United States (US)</option>
-                                        </select>
-                                        <!--====== End - Select Box ======-->
-                                    </div>
-                                    <div class="u-s-m-b-30">
-
-                                        <!--====== Select Box ======-->
-
-                                        <label class="gl-label" for="address-state">STATE/PROVINCE *</label><select class="select-box select-box--primary-style" id="address-state">
-                                            <option selected value="">Choose State/Province</option>
-                                            <option value="al">Alabama</option>
-                                            <option value="al">Alaska</option>
-                                            <option value="ny">New York</option>
-                                        </select>
-                                        <!--====== End - Select Box ======-->
-                                    </div>
-                                </div>
-                                <div class="gl-inline">
-                                    <div class="u-s-m-b-30">
-
-                                        <label class="gl-label" for="address-city">TOWN/CITY *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="address-city"></div>
-                                    <div class="u-s-m-b-30">
-
-                                        <label class="gl-label" for="address-street">ZIP/POSTAL CODE *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="address-postal" placeholder="Zip/Postal Code"></div>
-                                </div>
-                                <div class="gl-modal-btn-group">
-
-                                    <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
-
-                                    <button class="btn btn--e-grey-b-2" type="button" data-dismiss="modal">CANCEL</button></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--====== End - Shipping Address Add Modal ======-->
-        <!--====== End - Modal Section ======-->
+        
     </div>
     <!--====== End - Main App ======-->
 
@@ -695,10 +347,164 @@ include("header.php");
     <script src="js/app.js"></script>
 
   
-</body>
-</html>
-
-
 <?php
 include("footer.php");
 ?>
+
+<script type="module">
+    import { db } from './firebase/firebaseInit.js';
+    import { doc, collection, setDoc, getDoc, addDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+    async function getProductDetails(productId) {
+        if (!productId) {
+            console.error('Product ID is not provided');
+            return;
+        }
+        const productRef = doc(db, "products", productId);
+
+        try {
+            const productSnap = await getDoc(productRef);
+
+            if (productSnap.exists()) {
+                const productData = productSnap.data();
+
+                // Update the image
+                const productImageElement = document.querySelector('.o-card__img-wrap img');
+                if (productImageElement) {
+                    productImageElement.src = productData.imageUrl;
+                    productImageElement.alt = productData.title;
+                }
+
+                // Update the title
+                const productTitleElement = document.querySelector('.o-card__name a');
+                if (productTitleElement) {
+                    productTitleElement.textContent = productData.title;
+                    productTitleElement.href = `product-detail.php?category=${productData.category}&productId=${productId}`;
+                }
+
+                // Update the price
+                const productPriceElement = document.querySelector('.o-card__price');
+                if (productPriceElement) {
+                    productPriceElement.textContent = `$${productData.currentBid}`;
+                }
+
+                // Update the quantity
+                const productQuantityElement = document.querySelector('.o-card__quantity');
+                if (productQuantityElement) {
+                    productQuantityElement.textContent = `${productData.description}`;
+                }
+
+                const shippingCost = 5;
+                const taxRate = 0.06; // 6%
+
+                // Calculate tax based on the current bid
+                const taxAmount = productData.currentBid * taxRate;
+
+                // Calculate the total before tax and shipping
+                const subtotalAmount = productData.currentBid;
+
+                // Calculate the grand total
+                const grandTotal = subtotalAmount + taxAmount + shippingCost;
+
+                // Update the DOM with the new values
+                document.getElementById('shipping-cost').textContent = `$${shippingCost.toFixed(2)}`;
+                document.getElementById('tax-amount').textContent = `$${taxAmount.toFixed(2)}`;
+                document.getElementById('subtotal-amount').textContent = `$${subtotalAmount.toFixed(2)}`;
+                document.getElementById('grand-total').textContent = `$${grandTotal.toFixed(2)}`;
+
+                // Update other elements as needed...
+            } else {
+                console.error("No such product!");
+            }
+        } catch (error) {
+            console.error("Error getting product:", error);
+        }
+    }
+
+    const productId = "<?= $productId ?>";
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // This code will run after the DOM is fully loaded
+        // Call getProductDetails here if you need to display product details on page load
+        // If productId is needed for display on page load
+        if (productId) {
+            getProductDetails(productId);
+        }
+    });
+
+    // Assuming you have session UID available as 'sessionUID'
+    const sessionUID = "<?= $_SESSION['uid'] ?>";
+
+    async function savePaymentAndShipmentInfo(productId, sessionUID) {
+        // Step 1: Gather form information
+        const deliveryForm = document.querySelector('.checkout-f__delivery');
+        const paymentForm = document.querySelector('.checkout-f__payment');
+        
+        const deliveryInfo = {
+            firstName: deliveryForm.querySelector('#billing-fname').value,
+            lastName: deliveryForm.querySelector('#billing-lname').value,
+            email: deliveryForm.querySelector('#billing-email').value,
+            phone: deliveryForm.querySelector('#billing-phone').value,
+            streetAddress: deliveryForm.querySelector('#billing-street').value,
+            apartment: deliveryForm.querySelector('#billing-street-optional').value,
+            country: deliveryForm.querySelector('#billing-country').value,
+            city: deliveryForm.querySelector('#billing-town-city').value,
+            state: deliveryForm.querySelector('#billing-state').value,
+            zipCode: deliveryForm.querySelector('#billing-zip').value,
+        };
+
+        // Step 2: Use the product ID to fetch the product's current bid
+        const productRef = doc(db, "products", productId);
+        const productSnap = await getDoc(productRef);
+        let currentBid = 0;
+        let grandTotal;
+        if (productSnap.exists()) {
+            currentBid = productSnap.data().currentBid;
+            const shippingCost = 5;
+            const taxRate = 0.06; // 6%
+
+            // Calculate tax based on the current bid
+            const taxAmount = currentBid * taxRate;
+
+            // Calculate the total before tax and shipping
+            const subtotalAmount = currentBid;
+
+            // Calculate the grand total
+            grandTotal = subtotalAmount + taxAmount + shippingCost;
+
+            const updateData = {
+                status: "sold"
+            };
+            await updateDoc(productRef, updateData);
+        } else {
+            console.error("Product not found");
+            return;
+        }
+        
+        // Step 3: Retrieve the selected payment method
+        const selectedPaymentMethod = paymentForm.querySelector('input[name="payment"]:checked').id;
+
+        // Step 4: Create a new payments document with the necessary information
+        const paymentRef = await addDoc(collection(db, "payments"), {
+            amount: grandTotal.toString(),
+            buyerId: sessionUID,
+            paymentMethod: selectedPaymentMethod,
+            productId: productId,
+            timestamp: new Date().toLocaleString()
+        });
+
+        // Step 5: Add a shipments subcollection to the new payments document with the delivery information
+        await addDoc(collection(db, "payments", paymentRef.id, "shipments"), deliveryInfo);
+
+        alert("Payment Successfully")
+        // Step 6: Redirect the user to the payment history page
+        window.location.href = `payment-history.php`;
+    }
+
+    // Call this function when the user submits the form
+    const placeOrderButton = document.querySelector('.checkout-f__payment button[type="submit"]'); // Ensure this selector targets the correct button
+    placeOrderButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await savePaymentAndShipmentInfo(productId, sessionUID);
+    });
+
+</script>

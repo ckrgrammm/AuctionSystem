@@ -76,9 +76,9 @@
                     <div class="navbar-default sidebar" role="navigation">
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
-                                <li>
+                                <!-- <li>
                                     <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                                </li>
+                                </li> -->
 
                                 <li <?php echo (basename($_SERVER['SCRIPT_NAME']) == "customers.php" || basename($_SERVER['SCRIPT_NAME']) == "add_customer.php") ? 'class="active"' : ''; ?>>
                                     <a href="#"><i class="fa fa-user-circle fa-fw"></i> Customers<span class="fa arrow"></span></a>
@@ -104,9 +104,9 @@
                                     </ul>
                                 </li>
 
-                                <li>
+                                <!-- <li>
                                     <a href="bids.php"><i class="fa fa-gavel fa-fw"></i> Bids</a>
-                                </li>
+                                </li> -->
 
                                 <li>
                                     <a href="reviews&ratings.php"><i class="fa fa-commenting fa-fw"></i> Reviews and Ratings</a>

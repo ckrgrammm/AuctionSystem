@@ -1,6 +1,10 @@
 <?php
-
+$title = "Product Detail";
+session_start();
+require_once 'auth_validate.php';
 include("header.php");
+$productId = isset($_GET['productId']) ? $_GET['productId'] : '';
+$category = isset($_GET['category']) ? $_GET['category'] : '';
 
 ?>
 
@@ -18,20 +22,13 @@ include("header.php");
                     <div class="pd-breadcrumb u-s-m-b-30">
                         <ul class="pd-breadcrumb__list">
                             <li class="has-separator">
-
-                                <a href="index.hml">Home</a>
+                                <a href="index.php">Home</a>
                             </li>
                             <li class="has-separator">
-
-                                <a href="shop-side-version-2.php">Electronics</a>
+                                <a href="shop-side-version-2.php?category=<?= $category; ?>"><?= $category; ?></a>
                             </li>
-                            <li class="has-separator">
-
-                                <a href="shop-side-version-2.php">DSLR Cameras</a>
-                            </li>
-                            <li class="is-marked">
-
-                                <a href="shop-side-version-2.php">Nikon Cameras</a>
+                            <li class="product-title">
+                                <a href="product-detail.php?category=<?= $category; ?>&productId=<?= $productId; ?>"></a>
                             </li>
                         </ul>
                     </div>
@@ -42,53 +39,15 @@ include("header.php");
                     <div class="pd u-s-m-b-30">
                         <div class="slider-fouc pd-wrap">
                             <div id="pd-o-initiate">
-                                <div class="pd-o-img-wrap" data-src="images/product/product-d-1.jpg">
-
-                                    <img class="u-img-fluid" src="images/product/product-d-1.jpg" data-zoom-image="images/product/product-d-1.jpg" alt="">
-                                </div>
-                                <div class="pd-o-img-wrap" data-src="images/product/product-d-2.jpg">
-
-                                    <img class="u-img-fluid" src="images/product/product-d-2.jpg" data-zoom-image="images/product/product-d-2.jpg" alt="">
-                                </div>
-                                <div class="pd-o-img-wrap" data-src="images/product/product-d-3.jpg">
-
-                                    <img class="u-img-fluid" src="images/product/product-d-3.jpg" data-zoom-image="images/product/product-d-3.jpg" alt="">
-                                </div>
-                                <div class="pd-o-img-wrap" data-src="images/product/product-d-4.jpg">
-
-                                    <img class="u-img-fluid" src="images/product/product-d-4.jpg" data-zoom-image="images/product/product-d-4.jpg" alt="">
-                                </div>
-                                <div class="pd-o-img-wrap" data-src="images/product/product-d-5.jpg">
-
-                                    <img class="u-img-fluid" src="images/product/product-d-5.jpg" data-zoom-image="images/product/product-d-5.jpg" alt="">
+                                <div class="pd-o-img-wrap" data-src="">
+                                    <img class="u-img-fluid" src="" data-zoom-image="" alt="">
                                 </div>
                             </div>
-
-                            <span class="pd-text">Click for larger zoom</span>
                         </div>
                         <div class="u-s-m-t-15">
                             <div class="slider-fouc">
                                 <div id="pd-o-thumbnail">
-                                    <div>
-
-                                        <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt="">
-                                    </div>
-                                    <div>
-
-                                        <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt="">
-                                    </div>
-                                    <div>
-
-                                        <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt="">
-                                    </div>
-                                    <div>
-
-                                        <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt="">
-                                    </div>
-                                    <div>
-
-                                        <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt="">
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -101,99 +60,24 @@ include("header.php");
                     <div class="pd-detail">
                         <div>
 
-                            <span class="pd-detail__name">Nikon Camera 4k Lens Zoom Pro</span>
+                            <span class="pd-detail__name"></span>
                         </div>
                         <div>
                             <div class="pd-detail__inline">
 
-                                <span class="pd-detail__price">$6.99</span>
+                                <span class="pd-detail__price"></span>
 
-                                <span class="pd-detail__discount">(76% OFF)</span><del class="pd-detail__del">$28.97</del>
-                            </div>
-                        </div>
-                        <div class="u-s-m-b-15">
-                            <div class="pd-detail__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-
-                                <span class="pd-detail__review u-s-m-l-4">
-
-                                    <a data-click-scroll="#view-review">23 Reviews</a></span>
-                            </div>
-                        </div>
-                        <div class="u-s-m-b-15">
-                            <div class="pd-detail__inline">
-
-                                <span class="pd-detail__stock">200 in stock</span>
-
-                                <span class="pd-detail__left">Only 2 left</span>
                             </div>
                         </div>
                         <div class="u-s-m-b-15">
 
-                            <span class="pd-detail__preview-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
-                        </div>
-                        <div class="u-s-m-b-15">
-                            <div class="pd-detail__inline">
-
-                                <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>
-
-                                    <a href="signin.php">Add to Wishlist</a>
-
-                                    <span class="pd-detail__click-count">(222)</span></span>
-                            </div>
-                        </div>
-                        <div class="u-s-m-b-15">
-                            <div class="pd-detail__inline">
-
-                                <span class="pd-detail__click-wrap"><i class="far fa-envelope u-s-m-r-6"></i>
-
-                                    <a href="signin.php">Email me When the price drops</a>
-
-                                    <span class="pd-detail__click-count">(20)</span></span>
-                            </div>
-                        </div>
-                        <div class="u-s-m-b-15">
-                            <ul class="pd-social-list">
-                                <li>
-
-                                    <a class="s-fb--color-hover" href="#"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-
-                                    <a class="s-tw--color-hover" href="#"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-
-                                    <a class="s-insta--color-hover" href="#"><i class="fab fa-instagram"></i></a>
-                                </li>
-                                <li>
-
-                                    <a class="s-wa--color-hover" href="#"><i class="fab fa-whatsapp"></i></a>
-                                </li>
-                                <li>
-
-                                    <a class="s-gplus--color-hover" href="#"><i class="fab fa-google-plus-g"></i></a>
-                                </li>
-                            </ul>
+                            <span class="pd-detail__preview-desc"></span>
                         </div>
                         <div class="u-s-m-b-15">
                             <form class="pd-detail__form">
                                 <div class="pd-detail-inline-2">
                                     <div class="u-s-m-b-15">
-
-                                        <!--====== Input Counter ======-->
-                                        <div class="input-counter">
-
-                                            <span class="input-counter__minus fas fa-minus"></span>
-
-                                            <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
-
-                                            <span class="input-counter__plus fas fa-plus"></span>
-                                        </div>
-                                        <!--====== End - Input Counter ======-->
-                                    </div>
-                                    <div class="u-s-m-b-15">
-
-                                        <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button>
+                                        <button class="btn btn--e-brand-b-2 bid-btn" type="submit">Bid</button>
                                     </div>
                                 </div>
                             </form>
@@ -249,8 +133,8 @@ include("header.php");
                             <!--====== Tab 1 ======-->
                             <div class="tab-pane fade show active" id="pd-desc">
                                 <div class="pd-tab__desc">
-                                    <div class="u-s-m-b-15">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                    <div class="u-s-m-b-15 prod-desc">
+                                        <p></p>
                                     </div>
                                     <br>
                                     
@@ -261,26 +145,7 @@ include("header.php");
                                         <div class="pd-table gl-scroll">
                                             <table>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Item Name</td>
-                                                        <td>Cotton</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Item Initial Price</td>
-                                                        <td>Green, Blue, Red</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Item Category</td>
-                                                        <td>Long Sleeve</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Item Status</td>
-                                                        <td>Regular</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Favourite Item Status</td>
-                                                        <td>Not Printed</td>
-                                                    </tr>
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
@@ -852,3 +717,100 @@ include("header.php");
 <?php
 include("footer.php");
 ?>
+
+<script type="module">
+    import { db } from './firebase/firebaseInit.js';
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+    async function getProductDetails(productId) {
+        // Get a reference to the product document
+        const productRef = doc(db, "products", productId);
+        const productImageElement = document.querySelector('.pd-o-img-wrap img');
+        const productTitleElement = document.querySelector('.product-title a');
+        const productImageWrap = productImageElement.closest('.pd-o-img-wrap');
+        const productInfoTableBody = document.querySelector('.pd-table tbody');
+        
+        try {
+            // Fetch the document from Firestore
+            const docSnap = await getDoc(productRef);
+
+            // Check if the document exists
+            if (docSnap.exists()) {
+                // Get the data of the document
+                const productData = docSnap.data();
+
+                document.querySelector('.pd-detail__name').textContent = productData.title;
+                document.querySelector('.pd-detail__price').textContent = `$${productData.currentBid}`;
+                document.querySelector('.pd-detail__preview-desc').textContent = productData.description;
+                // Set the image if you have an image element
+                productImageElement.src = productData.imageUrl;
+                productImageElement.setAttribute('data-zoom-image', productData.imageUrl);
+                productImageWrap.setAttribute('data-src', productData.imageUrl);
+
+                productTitleElement.textContent = productData.title;
+
+                document.querySelector('.prod-desc p').textContent = productData.description;
+                if(productInfoTableBody) {
+                    const productInfoHtml = `
+                        <tr>
+                            <td>Item Name</td>
+                            <td>${productData.title || 'N/A'}</td>
+                        </tr>
+                        <tr>
+                            <td>Item Initial Price</td>
+                            <td>${productData.startPrice || 'N/A'}</td>
+                        </tr>
+                        <tr>
+                            <td>Item Category</td>
+                            <td>${productData.category || 'N/A'}</td>
+                        </tr>
+                        <tr>
+                            <td>Item Status</td>
+                            <td>${productData.status || 'N/A'}</td>
+                        </tr>
+                        <tr>
+                            <td>Start Time</td>
+                            <td>${new Date(productData.startTime).toLocaleString() || 'N/A'}</td>
+                        </tr>
+                        <tr>
+                            <td>End Time</td>
+                            <td>${new Date(productData.endTime).toLocaleString() || 'N/A'}</td>
+                        </tr>
+                    `;
+                    productInfoTableBody.innerHTML = productInfoHtml;
+                }
+                // Add more fields as needed...
+
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        } catch (error) {
+            console.error("Error getting document:", error);
+        }
+    }
+
+    // Assuming the productId is obtained from the URL as you mentioned
+    const productId = "<?= $productId; ?>";
+    if (productId) {
+        getProductDetails(productId);
+    }
+
+</script>
+
+<script>
+    var isLoggedIn = <?= json_encode(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in']); ?>;
+    const productId = "<?= $productId; ?>";
+    
+    // Add event listener to handle bid button clicks
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('bid-btn')) {
+            event.preventDefault();
+            if (!isLoggedIn) {
+                alert('Please log in to place a bid.');
+            } else {
+                window.location.href = `checkout.php?productId=${productId}`;
+            }
+        }
+    });
+</script>

@@ -155,3 +155,9 @@
                 </div>
             </div>
         </footer>
+
+        <script>
+            $(document).ready(function() {
+                $('#navigation1').shopNav();
+            });
+        </script>

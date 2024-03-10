@@ -7,17 +7,17 @@
                         <div class="col-12">
                             <div class="slider-content slider-content--animation">
 
-                                <span class="content-span-1 u-c-secondary">Latest Update Stock</span>
+                                <span class="content-span-1 u-c-secondary">Exciting Bids Await</span>
 
-                                <span class="content-span-2 u-c-secondary">30% Off On Electronics</span>
+                                <span class="content-span-2 u-c-secondary">Up to 50% Off in Our Daily Auctions</span>
 
-                                <span class="content-span-3 u-c-secondary">Find electronics on best prices, Also Discover most selling products of electronics</span>
+                                <span class="content-span-3 u-c-secondary">Explore a curated selection of antiques, art, and collectibles</span>
 
                                 <span class="content-span-4 u-c-secondary">Starting At
 
-                                    <span class="u-c-brand">$1050.00</span></span>
+                                    <span class="u-c-brand">$49.99</span></span>
 
-                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.php">SHOP NOW</a>
+                                <!-- <a class="shop-now-link btn--e-brand" href="shop-side-version-2.php">SHOP NOW</a> -->
                             </div>
                         </div>
                     </div>
@@ -29,17 +29,17 @@
                         <div class="col-12">
                             <div class="slider-content slider-content--animation">
 
-                                <span class="content-span-1 u-c-white">Find Top Brands</span>
+                                <span class="content-span-1 u-c-white">Rare Finds</span>
 
-                                <span class="content-span-2 u-c-white">10% Off On Electronics</span>
+                                <span class="content-span-2 u-c-white">Exclusive Deals on Vintage Collectibles</span>
 
-                                <span class="content-span-3 u-c-white">Find electronics on best prices, Also Discover most selling products of electronics</span>
+                                <span class="content-span-3 u-c-white">Don't miss out on the auction ending tonight!</span>
 
-                                <span class="content-span-4 u-c-white">Starting At
+                                <span class="content-span-4 u-c-white">Discover Unique Pieces
 
-                                    <span class="u-c-brand">$380.00</span></span>
+                                    <span class="u-c-brand">Register Now<</span></span>
 
-                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.php">SHOP NOW</a>
+                                <!-- <a class="shop-now-link btn--e-brand" href="shop-side-version-2.php">SHOP NOW</a> -->
                             </div>
                         </div>
                     </div>
@@ -51,17 +51,17 @@
                         <div class="col-12">
                             <div class="slider-content slider-content--animation">
 
-                                <span class="content-span-1 u-c-secondary">Find Top Brands</span>
+                                <span class="content-span-1 u-c-secondary">Auction Closing Soon</span>
 
-                                <span class="content-span-2 u-c-secondary">10% Off On Electronics</span>
+                                <span class="content-span-2 u-c-secondary">Last Chance to Bid on Tech Gadgets</span>
 
-                                <span class="content-span-3 u-c-secondary">Find electronics on best prices, Also Discover most selling products of electronics</span>
+                                <span class="content-span-3 u-c-secondary">Place your final bid and win amazing tech at unbeatable prices</span>
 
-                                <span class="content-span-4 u-c-secondary">Starting At
+                                <span class="content-span-4 u-c-secondary">Bid Endings
 
-                                    <span class="u-c-brand">$550.00</span></span>
+                                    <span class="u-c-brand">Today</span></span>
 
-                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.php">SHOP NOW</a>
+                                <!-- <a class="shop-now-link btn--e-brand" href="shop-side-version-2.php">SHOP NOW</a> -->
                             </div>
                         </div>
                     </div>
